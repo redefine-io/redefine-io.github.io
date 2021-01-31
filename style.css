@@ -103,7 +103,18 @@
   font-family: "Forma";
   font-weight: normal;
   font-style: normal;
-  font-size: 48px;
-  margin-top: -26px;
-  letter-spacing: 4px;
+  font-size: 26px;
+  margin-top: -8px;
+  letter-spacing: 6px;
+}
+
+.sub-text2 {
+  text-align: center;
+  color: #ffffff;
+  font-family: "Forma";
+  font-weight: normal;
+  font-style: italic;
+  font-size: 16px;
+  margin-top: 6px;
+  letter-spacing: 6px;
 }
