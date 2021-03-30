@@ -1,22 +1,542 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf8">
-        <title>redefine.io</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <link rel="stylesheet" href="style.css">
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    </head>
-    <body>
-        <div class="particle-network-animation">
-            <div class="card">
-                <a href="https://redefine.io" class="logo">
-                    <img src="logo.png" alt="redefine">
-                </a>
-                <div class="sub-text">Data Management in the Cloud</div>
-                <div class="sub-text2">coming soon</div>
-            </div>
+<html dir="ltr" lang="en-GB">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Redefine" />
+
+    <!-- Stylesheets
+	  ============================================= -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700|Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+
+    <!-- One Page Module Specific Stylesheet -->
+    <link rel="stylesheet" href="one-page/onepage.css" type="text/css" />
+    <!-- / -->
+
+    <link rel="stylesheet" href="css/dark.css" type="text/css" />
+    <link rel="stylesheet" href="css/font-icons.css" type="text/css" />
+    <link rel="stylesheet" href="one-page/css/et-line.css" type="text/css" />
+    <link rel="stylesheet" href="css/animate.css" type="text/css" />
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
+
+    <link rel="stylesheet" href="one-page/css/fonts.css" type="text/css" />
+
+    <link rel="stylesheet" href="css/custom.css" type="text/css" />
+    <link rel="stylesheet" href="css/colors.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Document Title
+		============================================= -->
+    <title>Redefine Technologies</title>
+  </head>
+
+  <body class="stretched side-push-panel">
+    <div class="body-overlay"></div>
+
+    <div id="side-panel" class="dark">
+      <div id="side-panel-trigger-close" class="side-panel-trigger">
+        <a href="#"><i class="icon-line-cross"></i></a>
+      </div>
+
+      <div class="side-panel-wrap">
+        <div class="widget widget_links clearfix">
+          <h4>About Redefine</h4>
+
+          <div style="font-size: 14px; line-height: 1.7">
+            <address style="line-height: 1.7">
+              Someplace<br />
+              Somewhere<br />
+            </address>
+
+            <div class="clear topmargin-sm"></div>
+
+            <abbr title="Email Address">Email:</abbr> info@redefine.io
+          </div>
         </div>
-        <script src="core.js"></script>
-    </body>
+
+        <div class="widget clearfix">
+          <h4>Connect Socially</h4>
+
+          <a
+            href="#"
+            class="social-icon si-small si-colored si-facebook"
+            title="Facebook"
+          >
+            <i class="icon-facebook"></i>
+            <i class="icon-facebook"></i>
+          </a>
+          <a
+            href="#"
+            class="social-icon si-small si-colored si-twitter"
+            title="Twitter"
+          >
+            <i class="icon-twitter"></i>
+            <i class="icon-twitter"></i>
+          </a>
+          <a
+            href="#"
+            class="social-icon si-small si-colored si-github"
+            title="Github"
+          >
+            <i class="icon-github"></i>
+            <i class="icon-github"></i>
+          </a>
+          <a
+            href="#"
+            class="social-icon si-small si-colored si-pinterest"
+            title="Pinterest"
+          >
+            <i class="icon-pinterest"></i>
+            <i class="icon-pinterest"></i>
+          </a>
+          <a
+            href="#"
+            class="social-icon si-small si-colored si-forrst"
+            title="Forrst"
+          >
+            <i class="icon-forrst"></i>
+            <i class="icon-forrst"></i>
+          </a>
+          <a
+            href="#"
+            class="social-icon si-small si-colored si-linkedin"
+            title="LinkedIn"
+          >
+            <i class="icon-linkedin"></i>
+            <i class="icon-linkedin"></i>
+          </a>
+          <a
+            href="#"
+            class="social-icon si-small si-colored si-gplus"
+            title="Google Plus"
+          >
+            <i class="icon-gplus"></i>
+            <i class="icon-gplus"></i>
+          </a>
+          <a
+            href="#"
+            class="social-icon si-small si-colored si-instagram"
+            title="Instagram"
+          >
+            <i class="icon-instagram"></i>
+            <i class="icon-instagram"></i>
+          </a>
+          <a
+            href="#"
+            class="social-icon si-small si-colored si-flickr"
+            title="Flickr"
+          >
+            <i class="icon-flickr"></i>
+            <i class="icon-flickr"></i>
+          </a>
+          <a
+            href="#"
+            class="social-icon si-small si-colored si-skype"
+            title="Skype"
+          >
+            <i class="icon-skype"></i>
+            <i class="icon-skype"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Document Wrapper
+	  ============================================= -->
+    <div id="wrapper" class="clearfix">
+      <!-- Header
+		  ============================================= -->
+      <header
+        id="header"
+        class="full-header transparent-header border-full-header dark header-size-custom"
+        data-sticky-shrink="false"
+        data-sticky-class="not-dark"
+        data-sticky-offset="full"
+        data-sticky-offset-negative="100"
+      >
+        <div id="header-wrap">
+          <div class="container">
+            <div class="header-row">
+              <!-- Logo
+						  ============================================= -->
+              <div id="logo">
+                <a
+                  href="index.html"
+                  class="standard-logo"
+                  data-dark-logo="images/logo-dark.png"
+                  ><img src="images/logo-light.png" alt="Redefine"
+                /></a>
+                <a
+                  href="index.html"
+                  class="retina-logo"
+                  data-dark-logo="images/logo-dark.png"
+                  ><img src="images/logo-light.png" alt="Redefine"
+                /></a>
+              </div>
+              <!-- #logo end -->
+
+              <div class="header-misc">
+                <div class="side-panel-trigger header-misc-icon">
+                  <a href="#"><i class="icon-ellipsis-v"></i></a>
+                </div>
+              </div>
+
+              <div id="primary-menu-trigger">
+                <svg class="svg-trigger" viewBox="0 0 100 100">
+                  <path
+                    d="m 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20"
+                  ></path>
+                  <path d="m 30,50 h 40"></path>
+                  <path
+                    d="m 70,67 h -40 c 0,0 -7.5,-0.802118 -7.5,-8.365747 0,-7.563629 7.5,-8.634253 7.5,-8.634253 h 20"
+                  ></path>
+                </svg>
+              </div>
+
+              <!-- Primary Navigation
+						  ============================================= -->
+              <nav class="primary-menu">
+                <ul
+                  class="one-page-menu menu-container"
+                  data-easing="easeInOutExpo"
+                  data-speed="1250"
+                  data-offset="65"
+                >
+                  <li class="menu-item">
+                    <a href="#" class="menu-link" data-href="#wrapper"
+                      ><div>Home</div></a
+                    >
+                  </li>
+                  <li class="menu-item">
+                    <a href="#" class="menu-link" data-href="#section-about"
+                      ><div>About</div></a
+                    >
+                  </li>
+                  <li class="menu-item">
+                    <a href="#" class="menu-link" data-href="#section-services"
+                      ><div>Services</div></a
+                    >
+                  </li>
+                  <li class="menu-item">
+                    <a href="#" class="menu-link" data-href="#section-contact"
+                      ><div>Contact</div></a
+                    >
+                  </li>
+                </ul>
+              </nav>
+              <!-- #primary-menu end -->
+            </div>
+          </div>
+        </div>
+        <div class="header-wrap-clone"></div>
+      </header>
+      <!-- #header end -->
+
+      <!-- Slider
+		  ============================================= -->
+      <section
+        id="slider"
+        class="slider-element slider-parallax dark min-vh-60 min-vh-md-100 include-header"
+      >
+        <div
+          class="slider-inner"
+          style="
+            background-image: url('images/splash.jpg');
+            background-size: cover;
+            background-position: center center;
+          "
+        >
+          <div class="vertical-middle">
+            <div class="container py-5 font-weight-bold display-4">
+              Everything you know about Data.
+              <span
+                class="text-rotater gradient-text"
+                data-speed="100"
+                data-backdelay="3000"
+                data-typed="true"
+              >
+                <span class="t-rotate">Reimagined.</span>
+              </span>
+            </div>
+            <div
+              class="text-lg-right container py-5 font-weight-bold display-2"
+            ></div>
+          </div>
+
+          <div class="video-wrap">
+            <div
+              class="video-overlay"
+              style="background-color: rgba(0, 0, 0, 0.15)"
+            ></div>
+          </div>
+
+          <a
+            href="#"
+            data-scrollto="#section-about"
+            data-easing="easeInOutExpo"
+            data-speed="1250"
+            data-offset="65"
+            class="one-page-arrow dark"
+          >
+            <i class="icon-line2-mouse infinite animated fadeInDown"></i>
+          </a>
+        </div>
+      </section>
+      <!-- #slider end -->
+
+      <!-- Content
+		  ============================================= -->
+      <section id="content">
+        <div class="content-wrap py-0">
+          <div id="section-about" class="center page-section">
+            <div class="container clearfix">
+              <h2
+                class="mx-auto bottommargin font-body"
+                style="max-width: 700px; font-size: 40px"
+              >
+                Don't be alarmed! <br />Our site is currently being developed.
+              </h2>
+            </div>
+          </div>
+        </div>
+
+        <div id="section-services" class="page-section pt-0">
+          <div
+            class="section parallax m-0 dark"
+            style="background-image: url('images/quotes.jpg'); padding: 150px 0"
+          >
+            <div class="video-wrap">
+              <div
+                class="video-overlay"
+                style="background-color: rgba(0, 0, 0, 0.5)"
+              ></div>
+            </div>
+
+            <div class="container clearfix">
+              <div class="row justify-content-end">
+                <div class="col-md-7">
+                  <div
+                    class="fslider testimonial testimonial-full bg-transparent border-0 shadow-none p-0"
+                    data-arrows="false"
+                  >
+                    <div class="flexslider">
+                      <div class="slider-wrap">
+                        <div class="slide">
+                          <div class="testi-content">
+                            <p>
+                              Invention is by its very nature disruptive. If you
+                              want to be understood at all times, then don’t do
+                              anything new.
+                            </p>
+                            <div class="testi-meta">
+                              Jeff Bezos
+                              <span>Amazon.</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="slide">
+                          <div class="testi-content">
+                            <p>
+                              The people who are crazy enough to think they can
+                              change the world are the ones who do.
+                            </p>
+                            <div class="testi-meta">
+                              Steve Jobs
+                              <span>Apple Inc.</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="slide">
+                          <div class="testi-content">
+                            <p>
+                              We always overestimate the change that will occur
+                              in the next two years and underestimate the change
+                              that will occur in the next ten. Don’t let
+                              yourself be lulled into inaction.
+                            </p>
+                            <div class="testi-meta">
+                              Bill Gates
+                              <span>Microsoft Inc.</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="section-contact" class="page-section pt-0">
+          <div class="row mx-0 bottommargin-lg align-items-stretch">
+            <div class="col-lg-8 col-md-6 d-none d-md-block px-0">
+              <div
+                class="gmap h-100"
+                data-address="London, United Kingdom"
+                data-maptype="ROADMAP"
+                data-zoom="14"
+                data-markers='[{ address: "London, United Kingdom", html: "London, United Kingdom", icon:{ image: "images/map-icon-red.png", iconsize: [32, 32], iconanchor: [14,44] } }]'
+                data-styles='[{"featureType":"all","elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#000000"},{"lightness":40}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#000000"},{"lightness":16}]},{"featureType":"all","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"lightness":17},{"weight":1.2}]},{"featureType":"administrative","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"administrative.country","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"administrative.country","elementType":"geometry","stylers":[{"visibility":"simplified"}]},{"featureType":"administrative.country","elementType":"labels.text","stylers":[{"visibility":"simplified"}]},{"featureType":"administrative.province","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"administrative.locality","elementType":"all","stylers":[{"visibility":"simplified"},{"saturation":"-100"},{"lightness":"30"}]},{"featureType":"administrative.neighborhood","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"administrative.land_parcel","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"landscape","elementType":"all","stylers":[{"visibility":"simplified"},{"gamma":"0.00"},{"lightness":"74"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"landscape.man_made","elementType":"all","stylers":[{"lightness":"3"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":21}]},{"featureType":"road","elementType":"geometry","stylers":[{"visibility":"simplified"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#000000"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":18}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":16}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":19}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":17}]}]'
+              ></div>
+            </div>
+            <div class="col-lg-4 col-md-6" style="background-color: #f5f5f5">
+              <div class="col-padding">
+                <h3 class="font-body font-weight-normal ls1">
+                  Our Headquarters
+                </h3>
+
+                <div style="font-size: 16px; line-height: 1.7">
+                  <address style="line-height: 1.7">
+                    <strong>Someplace:</strong><br />
+                    Somewhere<br />
+                    ...<br />
+                  </address>
+
+                  <div class="clear topmargin"></div>
+
+                  <abbr title="Email Address"><strong>Email:</strong></abbr>
+                  info@redefine.io
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- #content end -->
+
+      <!-- Footer
+		  ============================================= -->
+      <footer id="footer" class="dark border-0">
+        <div class="container center">
+          <div class="footer-widgets-wrap">
+            <div class="row mx-auto clearfix">
+              <div class="col-lg-4">
+                <div class="widget clearfix">
+                  <h4>Site Links</h4>
+
+                  <ul class="list-unstyled footer-site-links mb-0">
+                    <li>
+                      <a
+                        href="#"
+                        data-scrollto="#wrapper"
+                        data-easing="easeInOutExpo"
+                        data-speed="1250"
+                        data-offset="70"
+                        >Home</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        data-scrollto="#section-about"
+                        data-easing="easeInOutExpo"
+                        data-speed="1250"
+                        data-offset="70"
+                        >About</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        data-scrollto="#section-services"
+                        data-easing="easeInOutExpo"
+                        data-speed="1250"
+                        data-offset="70"
+                        >Services</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        data-scrollto="#section-contact"
+                        data-easing="easeInOutExpo"
+                        data-speed="1250"
+                        data-offset="70"
+                        >Contact</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="col-lg-4"></div>
+
+              <div class="col-lg-4">
+                <div class="widget clearfix">
+                  <h4>Contact</h4>
+
+                  <p class="lead">Someplace<br />Somewhere</p>
+
+                  <div class="center topmargin-sm">
+                    <a
+                      href="#"
+                      class="social-icon inline-block border-0 si-small si-facebook"
+                      title="Facebook"
+                    >
+                      <i class="icon-facebook"></i>
+                      <i class="icon-facebook"></i>
+                    </a>
+                    <a
+                      href="#"
+                      class="social-icon inline-block border-0 si-small si-twitter"
+                      title="Twitter"
+                    >
+                      <i class="icon-twitter"></i>
+                      <i class="icon-twitter"></i>
+                    </a>
+                    <a
+                      href="#"
+                      class="social-icon inline-block border-0 si-small si-github"
+                      title="Github"
+                    >
+                      <i class="icon-github"></i>
+                      <i class="icon-github"></i>
+                    </a>
+                    <a
+                      href="#"
+                      class="social-icon inline-block border-0 si-small si-pinterest"
+                      title="Pinterest"
+                    >
+                      <i class="icon-pinterest"></i>
+                      <i class="icon-pinterest"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="copyrights">
+          <div class="container center clearfix">
+            Copyrights Redefine 2021 | All Rights Reserved
+          </div>
+        </div>
+      </footer>
+      <!-- #footer end -->
+    </div>
+    <!-- #wrapper end -->
+
+    <!-- Go To Top
+	  ============================================= -->
+    <div id="gotoTop" class="icon-angle-up"></div>
+
+    <!-- JavaScripts
+	  ============================================= -->
+    <script src="js/jquery.js"></script>
+    <script src="js/plugins.min.js"></script>
+    <!-- <script src="js/plugins.min.js"></script> -->
+    <script src="https://maps.google.com/maps/api/js?key=AIzaSyBJN1jFfGd3_Hc_U5Sowtfs8BmytGqQLUA"></script>
+
+    <!-- Footer Scripts
+	  ============================================= -->
+    <script src="js/functions.js"></script>
+  </body>
 </html>
