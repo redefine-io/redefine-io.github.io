@@ -33,6 +33,13 @@
 	width: 240px;
 }
 
+@media (max-width: 991.98px) {
+	#logo img {
+		height: auto !important;
+		width: 180px;
+	}
+}
+
 #footer-logo {
 	width: 240px;
 }
