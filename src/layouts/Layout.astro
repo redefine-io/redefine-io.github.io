@@ -1,15 +1,21 @@
 ---
+import SEO from "~/components/SEO.astro"
+
 export interface Props {
 	title: string;
 }
 
-const { title } = Astro.props;
+const title = [Astro.props.title, "Redefine"].filter(Boolean).join(" | ")
+const resolvedImage = {
+	src: new URL("og/redefine.png", Astro.site).toString(),
+	alt: "Everything you know about data, reimaged",
+}
 ---
 
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="UTF-8" />
+		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
 
 		<!-- favicons -->
@@ -18,27 +24,36 @@ const { title } = Astro.props;
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 		<link rel="manifest" href="/manifest.webmanifest">
 
-		<!-- sitemap -->
 		<link rel="sitemap" href="/sitemap-index.xml">
 
-		<meta name="generator" content={Astro.generator} />
-		<title>{title} | Redefine</title>
+		<SEO
+			name="Redefine"
+			title={title}
+			description="We help companies with all their data needs. Whether you are starting a digital transformation or processing billions of events per day."
+			image={resolvedImage}
+			/>
 	</head>
 	<body>
-		<slot />
+		{/* SkipLink */}
+		<div class="flex min-h-screen flex-col">
+			<div class="sticky top-0 z-50">
+				<header>
+					<nav aria-label="Primary" class="flex items-center w-full mx-auto max-w-screen-2xl p-8 h-20">
+						<a href="/" rel="prefetch" title="Home">
+							<img class="w-[240px]" src="logo-dark.png" alt="Redefine Technologies logo">
+						</a>
+						<div class="ml-16 hidden gap-16 lg:flex">
+							<a href="" class="transition-colors text-gray-800 hover:text-redefine-primary">Services</a>
+							<a href="" class="transition-colors text-gray-800 hover:text-redefine-primary">Company</a>
+							<a href="" class="transition-colors text-gray-800 hover:text-redefine-primary">Blog</a>
+							<a href="" class="transition-colors text-gray-800 hover:text-redefine-primary">Contact</a>
+						</div>
+					</nav>
+				</header>
+			</div>
+			<main>
+				<slot />
+			</main>
+		</div>
 	</body>
 </html>
-<style is:global>
-	:root {
-		--accent: 124, 58, 237;
-		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background-color: #F6F6F6;
-	}
-	code {
-		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-			Bitstream Vera Sans Mono, Courier New, monospace;
-	}
-</style>
