@@ -7,7 +7,16 @@ import partytown from "@astrojs/partytown";
 // https://astro.build/config
 export default defineConfig({
   site: "https://redefine.io",
-  integrations: [sitemap(), tailwind(), mdx(), partytown()],
+  integrations: [
+    sitemap(),
+    tailwind(),
+    mdx(),
+    partytown({
+      config: {
+        forward: ["dataLayer.push"],
+      },
+    }),
+  ],
   experimental: {
     assets: true,
   },
