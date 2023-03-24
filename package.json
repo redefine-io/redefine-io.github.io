@@ -14,6 +14,7 @@
     "@astrojs/partytown": "^1.1.1",
     "@astrojs/sitemap": "^1.2.1",
     "@astrojs/tailwind": "^3.1.1",
+    "@fontsource/montserrat-alternates": "^4.5.11",
     "astro": "^2.1.6",
     "tailwindcss": "^3.0.24"
   },
