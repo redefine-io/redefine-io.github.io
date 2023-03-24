@@ -1,0 +1,14 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "~/layouts/Layout.astro";
+
+// Get the list of blog post entries, we can add pagination at a later date.
+const blogEntries = await getCollection("blog");
+blogEntries.sort(
+  (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()
+);
+---
+
+<Layout title="Redefine Blog">
+  <div>Blog Placeholder</div>
+</Layout>

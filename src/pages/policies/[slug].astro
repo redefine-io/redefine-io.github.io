@@ -1,0 +1,27 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "~/layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const policies = await getCollection("policies");
+
+  return policies.map((policy) => ({
+    params: { slug: policy.slug },
+    props: { policy },
+  }));
+}
+
+const { policy } = Astro.props;
+const { title, updatedDate } = policy.data;
+const { Content } = await policy.render()
+---
+
+<Layout title={title}>
+  <section class="w-full mx-auto max-w-lg pb-40 pt-20">
+    <p class="text-center">Last updated on {updatedDate.toLocaleDateString("en-US", { dateStyle: "long"})}</p>
+    <h1 class="text-4xl text-center font-semibold">{title}</h1>
+    <article class="prose">
+      <Content />
+    </article>
+  </section>
+</Layout>
