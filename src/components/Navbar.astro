@@ -11,7 +11,10 @@ type MenuItem = {
   name: string;
 };
 
-const menuItems: MenuItem[] = [{ href: "/blog", name: "Blog" }];
+const menuItems: MenuItem[] = [
+  { href: "/blog", name: "Blog" },
+  { href: "/contact", name: "Contact" },
+];
 ---
 
 <Container>
@@ -28,7 +31,7 @@ const menuItems: MenuItem[] = [{ href: "/blog", name: "Blog" }];
               class="w-[160px] md:w-[240px]"
             />
           </a>
-          <div class="hidden ml-16 md:flex">
+          <div class="hidden ml-16 md:flex space-x-4">
             {menuItems.map((item) => <MenuItem {...item} />)}
           </div>
           <button id="menu" class="md:hidden" aria-label="Toggle Menu">
@@ -46,10 +49,10 @@ const menuItems: MenuItem[] = [{ href: "/blog", name: "Blog" }];
       <!-- Mobile Menu Panel  -->
       <div
         id="nav-toggle"
-        class="hidden h-screen flex flex-col items-center justify-center"
+        class="hidden h-screen flex flex-col items-center justify-center space-y-4"
       >
         {menuItems.map((item) => <MenuItem {...item} />)}
-        <Socials class="mt-10 text-gray-900" />
+        <Socials class="pt-10 text-gray-900" />
       </div>
     </nav>
   </header>
