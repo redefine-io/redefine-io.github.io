@@ -13,7 +13,7 @@ const currentYear = new Date().getFullYear();
   <div class="bg-gray-900 text-white">
     <Container class="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4 p-10">
       <div class="space-y-4">
-        <a href="/" title="Home" class="block">
+        <a href="/" rel="prefetch" title="Home" class="block">
           <Image
             src={logoLight}
             width={176}
@@ -38,14 +38,14 @@ const currentYear = new Date().getFullYear();
       <div>
         <ul>
           <li>
-            <a href="/blog" class="transition-colors hover:text-redefine-primary">Blog</a>
+            <a href="/blog" rel="prefetch" class="transition-colors hover:text-redefine-primary">Blog</a>
           </li>
         </ul>
       </div>
       <div>
         <ul>
           <li>
-            <a href="/policies/modern-slavery" class="transition-colors hover:text-redefine-primary">Modern Slavery</a>
+            <a href="/policies/modern-slavery" rel="prefetch" class="transition-colors hover:text-redefine-primary">Modern Slavery</a>
           </li>
         </ul>
       </div>
