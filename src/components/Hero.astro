@@ -9,26 +9,28 @@ const heroImg533 = await getImage({src: heroImg, width: 533})
 const heroImg640 = await getImage({src: heroImg, width: 640})
 ---
 
-<section class="relative w-full mx-auto max-w-screen-2xl md:grid md:grid-cols-12">
-  <div class="flex flex-col justify-center p-10 md:col-span-7">
-    <h1 class="text-xl font-extrabold tracking-wider text-redefine-secondary sm:text-2xl md:text-3xl lg:text-5xl xl:text-6xl 2xl:text-7xl">
-      <span class="text-redefine-primary">#</span> Data <span class="text-redefine-primary">Reimagined</span>
-    </h1>
-    <p class="mt-6 text-lg leading-8 text-gray-600">
-      Maximize Your Data Potential with Redefine.
-    </p>
-    <p class="mt-6 text-lg leading-8 text-gray-600">
-      At Redefine, we empower businesses to harness the full power of their data through advanced data engineering and analytics solutions. Our team of expert consultants will guide you in unlocking valuable insights and driving growth by creating customized, scalable, and cutting-edge technology solutions tailored to your unique needs.
-    </p>
-    <div class="mt-10">
-      <GetInTouch />
+<div class="bg-redefine-secondary">
+  <section class="relative w-full mx-auto max-w-screen-2xl md:grid md:grid-cols-12">
+    <div class="flex flex-col justify-center p-10 md:col-span-7">
+      <h1 class="text-xl font-extrabold tracking-wider text-white sm:text-2xl md:text-3xl lg:text-5xl xl:text-6xl 2xl:text-7xl">
+        <span class="text-redefine-primary">#</span> Data <span class="text-redefine-primary">Reimagined</span>
+      </h1>
+      <p class="mt-6 text-lg leading-8 text-gray-50">
+        Maximize Your Data Potential with Redefine.
+      </p>
+      <p class="mt-6 text-lg leading-8 text-gray-50">
+        At Redefine, we empower businesses to harness the full power of their data through advanced data engineering and analytics solutions. Our team of expert consultants will guide you in unlocking valuable insights and driving growth by creating customized, scalable, and cutting-edge technology solutions tailored to your unique needs.
+      </p>
+      <div class="mt-10">
+        <GetInTouch dark={true} />
+      </div>
     </div>
-  </div>
-  <div class="md:col-span-5">
-    <img class="aspect-[3/2] object-cover w-full h-full md:aspect-auto"
-      srcset={`${heroImg320.src} 320w, ${heroImg427.src} 427w, ${heroImg533.src} 533w, ${heroImg640.src} 640w`}
-      src={heroImg640.src}
-      sizes="(max-width: 768px) 640px, (max-width: 1024px) 427px, (max-width: 1280px) 533px, 640px"
-      alt="Man sitting at a desk looking at his laptop"/>
-  </div>
-</section>
+    <div class="md:col-span-5">
+      <img class="aspect-[3/2] object-cover w-full h-full md:aspect-auto"
+        srcset={`${heroImg320.src} 320w, ${heroImg427.src} 427w, ${heroImg533.src} 533w, ${heroImg640.src} 640w`}
+        src={heroImg640.src}
+        sizes="(max-width: 768px) 640px, (max-width: 1024px) 427px, (max-width: 1280px) 533px, 640px"
+        alt="Man sitting at a desk looking at his laptop"/>
+    </div>
+  </section>
+</div>
