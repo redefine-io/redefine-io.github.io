@@ -4,7 +4,7 @@ export interface Props {
   name: string;
 }
 
-const currentPath = Astro.url.pathname;
+const currentPath = Astro.url.pathname.replace(/\/+$/, "");
 const { href, name } = Astro.props;
 const selected = href == currentPath;
 ---
