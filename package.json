@@ -1,0 +1,26 @@
+{
+  "name": "redefine.io",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro check --watch & astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^0.18.2",
+    "@astrojs/partytown": "^1.1.1",
+    "@astrojs/prefetch": "^0.2.1",
+    "@astrojs/sitemap": "^1.2.1",
+    "@astrojs/tailwind": "^3.1.1",
+    "@fontsource/montserrat-alternates": "^4.5.11",
+    "astro": "^2.1.6",
+    "astro-icon": "^0.8.0",
+    "tailwindcss": "^3.0.24"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.9"
+  }
+}

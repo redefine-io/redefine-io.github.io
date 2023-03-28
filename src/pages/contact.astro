@@ -1,0 +1,35 @@
+---
+import { Icon } from "astro-icon";
+import Layout from "~/layouts/Layout.astro";
+import Container from "~/components/Container.astro";
+
+const title="Contact Us"
+const description="Are you ready to leverage the power of data to drive your business forward?"
+---
+
+
+<Layout title={title} description={description}>
+  <Container>
+    <div class="max-w-2xl mx-auto mt-16 text-center">
+      <h1 class="text-4xl lg:text-5xl font-mono font-bold tracking-tight">
+        {title}
+      </h1>
+      <p class="text-lg mt-4">
+        Are you ready to leverage the power of data to drive your business forward?
+        Contact us today to discuss how our team of experts can transform your
+        business challenges into innovative solutions.
+      </p>
+      <div>
+        <a href="mailto:info@redefine.io" rel="noopener noreferer" target="_blank"
+          class="mt-16 flex justify-center transition-colors text-redefine-secondary hover:text-redefine-primary text-2xl md:text-4xl">
+          <span class="sr-only">Email info@redefine.io</span>
+          <div class="flex flex-row items-center space-x-2">
+            <Icon name="mdi:email" class="h-6 w-6 inline" aria-hidden="true" />
+            <p>info@redefine.io</p>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </Container>
+</Layout>

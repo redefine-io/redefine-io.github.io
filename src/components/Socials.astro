@@ -1,0 +1,50 @@
+---
+import { Icon } from "astro-icon";
+
+type SocialLink = {
+  href: string;
+  text: string;
+  icon: string;
+};
+
+const socials: SocialLink[] = [
+  {
+    href: "https://twitter.com/redefine_io",
+    text: "Follow Redefine on Twitter",
+    icon: "mdi:twitter",
+  },
+  {
+    href: "https://github.com/redefine-io",
+    text: "Go to Redefine's Github organisation",
+    icon: "mdi:github",
+  },
+  {
+    href: "https://www.linkedin.com/company/redefine-io",
+    text: "Follow Redefine on LinkedIn",
+    icon: "mdi:linkedin",
+  },
+  {
+    href: "https://www.instagram.com/redefine_io",
+    text: "Follow Redefine on Instagram",
+    icon: "mdi:instagram",
+  },
+];
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={["flex space-x-6", className]}>
+  {
+    socials.map((social) => (
+      <a
+        href={social.href}
+        rel="noopener noreferer"
+        target="_blank"
+        class="transition-colors hover:text-redefine-primary"
+      >
+        <span class="sr-only">{social.text}</span>
+        <Icon name={social.icon} class="h-6 w-6" aria-hidden="true" />
+      </a>
+    ))
+  }
+</div>

@@ -1,0 +1,24 @@
+---
+import Layout from "~/layouts/Layout.astro";
+import Container from "~/components/Container.astro";
+
+const title = "Page not found";
+const description = "Sorry, we couldn't find the page you're looking for";
+---
+
+<Layout title={title} description={description}>
+  <section class="flex-1">
+    <Container class="text-center py-24">
+      <p class="text-base font-semibold leading-8">404</p>
+      <h1 class="mt-4 text-3xl font-bold tracking-tight sm:text-5xl">
+        {title}
+      </h1>
+      <p class="mt-4 text-base sm:mt-6">{description}</p>
+      <div class="mt-10 flex justify-center">
+        <a href="/" rel="prefetch" class="text-sm font-semibold leading-7">
+          <span aria-hidden="true">&larr;</span> Back to home
+        </a>
+      </div>
+    </Container>
+  </section>
+</Layout>

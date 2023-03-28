@@ -1,0 +1,55 @@
+---
+import SEO from "~/components/SEO.astro";
+import SkipLink from "~/components/SkipLink.astro";
+import Navbar from "~/components/Navbar.astro";
+import Footer from "~/components/Footer.astro";
+import "@fontsource/montserrat-alternates";
+
+export interface Props {
+  title: string;
+  description: string;
+  index?: boolean;
+}
+
+const { description, index, title: propTitle } = Astro.props;
+
+const title = (index ? ["Redefine", propTitle] : [propTitle, "Redefine"])
+  .filter(Boolean)
+  .join(" | ");
+
+const resolvedImage = {
+  src: new URL("og/redefine.png", Astro.site).toString(),
+  alt: description,
+};
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <!-- favicons -->
+    <link rel="icon" sizes="any" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <SEO
+      name="Redefine"
+      title={title}
+      description={description}
+      image={resolvedImage}
+    />
+  </head>
+  <body class="selection:bg-redefine-primary flex min-h-screen flex-col">
+    <SkipLink />
+    <Navbar />
+    <main id="main-content" class="flex flex-1 flex-col">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

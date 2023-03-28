@@ -1,0 +1,14 @@
+---
+export interface Props {
+  date: Date;
+  class?: string;
+}
+
+const { date, class: className } = Astro.props;
+const localDate = new Date(date.toISOString().slice(0, -1));
+
+---
+
+<time datetime={localDate.toISOString()} class={className}>
+  {localDate.toLocaleDateString("en-GB", { dateStyle: "long" })}
+</time>
