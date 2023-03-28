@@ -1,0 +1,70 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon";
+import Container from "~/components/Container.astro";
+import MenuItem from "~/components/MenuItem.astro";
+import Socials from "~/components/Socials.astro";
+import logoDark from "~/assets/logo-dark.png";
+
+type MenuItem = {
+  href: string;
+  name: string;
+};
+
+const menuItems: MenuItem[] = [
+  { href: "/blog", name: "Blog" },
+  { href: "/contact", name: "Contact" },
+];
+---
+
+<Container>
+  <header>
+    <nav aria-label="Primary">
+      <!-- Menu -->
+      <div class="flex p-2 md:p-8 h-20 items-center justify-between">
+        <div class="flex-1 flex items-center justify-between md:justify-start">
+          <a rel="prefetch" href="/" title="Home">
+            <Image
+              src={logoDark}
+              width={240}
+              alt="Redefine Technologies logo"
+              class="w-[160px] md:w-[240px]"
+            />
+          </a>
+          <div class="hidden ml-16 md:flex space-x-4">
+            {menuItems.map((item) => <MenuItem {...item} />)}
+          </div>
+          <button id="menu" class="md:hidden" aria-label="Toggle Menu">
+            <Icon id="nav-toggle" name="ic:round-menu" class="h-6 w-6" />
+            <Icon
+              id="nav-toggle"
+              name="ic:round-close"
+              class="h-6 w-6 hidden"
+            />
+          </button>
+        </div>
+        <Socials class="hidden md:flex text-gray-900" />
+      </div>
+
+      <!-- Mobile Menu Panel  -->
+      <div
+        id="nav-toggle"
+        class="hidden h-screen flex flex-col items-center justify-center space-y-4"
+      >
+        {menuItems.map((item) => <MenuItem {...item} />)}
+        <Socials class="pt-10 text-gray-900" />
+      </div>
+    </nav>
+  </header>
+</Container>
+
+<script>
+  const menuButton = document.getElementById("menu");
+  menuButton?.addEventListener("click", () => {
+    [...document.querySelectorAll("#nav-toggle")].forEach((element) => {
+      element.classList.toggle("hidden");
+    });
+    // disable scroll
+    document.body.classList.toggle("overflow-hidden");
+  });
+</script>

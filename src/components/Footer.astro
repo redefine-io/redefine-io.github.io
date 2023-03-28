@@ -1,0 +1,67 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon";
+import Container from "~/components/Container.astro";
+import Socials from "~/components/Socials.astro";
+import logoLight from "~/assets/logo-light.png";
+import ccsLogo from "~/assets/ccs-white.png";
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer>
+  <div class="bg-gray-900 text-white">
+    <Container class="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4 p-10">
+      <div class="space-y-4">
+        <a href="/" rel="prefetch" title="Home" class="block">
+          <Image
+            src={logoLight}
+            width={176}
+            alt="Redefine Technologies logo"
+          />
+        </a>
+        <div>
+          <a href="mailto:info@redefine.io" rel="noopener noreferer" target="_blank" class="transition-colors hover:text-redefine-primary">
+            <span class="sr-only">Email info@redefine.io</span>
+            <div class="flex flex-row items-center space-x-2">
+              <Icon name="mdi:email" class="h-6 w-6 inline" aria-hidden="true" />
+              <p>info@redefine.io</p>
+            </div>
+          </a>
+        </div>
+        <Socials />
+        <p class="max-w-xs text-xs text-gray-400">
+          Redefine is registered in England and Wales as Redefine
+          Technologies Limited (No. 13161425)
+        </p>
+      </div>
+      <div>
+        <ul>
+          <li>
+            <a href="/blog" rel="prefetch" class="transition-colors hover:text-redefine-primary">Blog</a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <ul>
+          <li>
+            <a href="/policies/modern-slavery" rel="prefetch" class="transition-colors hover:text-redefine-primary">Modern Slavery</a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <Image
+          src={ccsLogo}
+          width={140}
+          alt="Redefine Technologies logo"
+          class="-mt-[14px] -ml-[14px]"
+        />
+      </div>
+    </Container>
+  </div>
+  <div class="py-5">
+    <div class="mx-auto flex max-w-7xl justify-center text-xs text-gray-600">
+      &#169; {currentYear} Redefine Technologies. All Rights Reserved
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,20 @@
+---
+export interface Props {
+  href: string;
+  name: string;
+}
+
+const currentPath = Astro.url.pathname.replace(/\/+$/, "");
+const { href, name } = Astro.props;
+const selected = href == currentPath;
+---
+
+<a
+  href={href}
+  rel="prefetch"
+  class={`text-4xl md:text-xl transition-colors font-extrabold text-gray-900
+        hover:text-redefine-primary border-redefine-primary
+        ${selected ? "border-b-2" : ""}`}
+>
+  {name}
+</a>
