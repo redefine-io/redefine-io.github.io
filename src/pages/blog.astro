@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Layout from "~/layouts/Layout.astro";
 import Container from "~/components/Container.astro";
+import FormattedDate from "~/components/FormattedDate.astro";
 
 // Get the list of blog post entries, we can add pagination at a later date.
 const blogEntries = await getCollection("blog");
@@ -21,19 +22,12 @@ const description="Insights into some thoughts from Redefine"
       </h1>
       <p class="text-lg mt-4">Insights into some thoughts from Redefine</p>
     </div>
-    <div class="mt-16 space-y-16 flex justify-center">
+    <div class="mt-16 space-y-16 flex flex-col items-center">
       {
         blogEntries.map((entry) => (
           <article class="flex max-w-xl flex-col items-start justify-between">
             <div class="flex items-center gap-x-4 text-xs">
-              <time
-                datetime={entry.data.publishDate.toISOString()}
-                class="text-gray-500"
-              >
-                {entry.data.publishDate.toLocaleDateString("en-US", {
-                  dateStyle: "long",
-                })}
-              </time>
+              <FormattedDate class="text-gray-500" date={entry.data.publishDate} />
             </div>
             <div class="group relative">
               <h2 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">

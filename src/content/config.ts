@@ -12,10 +12,7 @@ export const collections = {
     schema: z.object({
       title: z.string(),
       description: z.string(),
-      publishDate: z
-        .string()
-        .or(z.date())
-        .transform((val) => new Date(val)),
+      publishDate: z.coerce.date(),
       author: z.string().default("Redefine"),
     }),
   }),
@@ -23,7 +20,7 @@ export const collections = {
     schema: z.object({
       title: z.string(),
       description: z.string(),
-      updatedDate: z.date(),
+      updatedDate: z.coerce.date(),
     }),
   }),
 };

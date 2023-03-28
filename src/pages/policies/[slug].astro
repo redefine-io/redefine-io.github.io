@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import FormattedDate from "~/components/FormattedDate.astro";
 import Layout from "~/layouts/Layout.astro";
 
 export async function getStaticPaths() {
@@ -20,9 +21,8 @@ const { Content } = await policy.render();
   <section class="w-full mx-auto max-w-4xl pb-40 pt-20">
     <h1 class="text-4xl text-center font-semibold">{title}</h1>
     <p class="text-center text-sm text-gray-600">
-      Last updated on {
-        updatedDate.toLocaleDateString("en-US", { dateStyle: "long" })
-      }
+      Last updated on
+      <FormattedDate date={updatedDate} />
     </p>
     <article class="pt-10 prose max-w-[100ch]">
       <Content />
