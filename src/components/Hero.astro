@@ -1,22 +1,25 @@
 ---
 import { Image } from "astro:assets";
+import GetInTouch from "~/components/GetInTouch.astro";
 import heroImg from "~/assets/hero.jpg";
 ---
 
 <section class="relative w-full mx-auto max-w-screen-2xl md:grid md:grid-cols-12">
   <div class="flex flex-col justify-center p-10 md:col-span-7">
-    <h1 class="text-2xl font-bold tracking-wider text-redefine-secondary md:text-3xl lg:text-5xl xl:text-6xl 2xl:text-7xl">
+    <h1 class="text-xl font-bold tracking-wider text-redefine-secondary sm:text-2xl md:text-3xl lg:text-5xl xl:text-6xl 2xl:text-7xl">
       <span class="text-redefine-primary">#</span> Data <span class="text-redefine-primary">Reimagined</span>
     </h1>
     <p class="mt-6 text-lg leading-8 text-gray-600">
-      Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet
-      fugiat veniam occaecat fugiat aliqua.
+      Maximize Your Data Potential with Redefine.
     </p>
-    <a href="/contact" class="mt-10 text-md tracking-widest font-semibold text-redefine-secondary">
-      Get in touch <span aria-hidden="true">→</span>
-    </a>
+    <p class="mt-6 text-lg leading-8 text-gray-600">
+      At Redefine, we empower businesses to harness the full power of their data through advanced data engineering and analytics solutions. Our team of expert consultants will guide you in unlocking valuable insights and driving growth by creating customized, scalable, and cutting-edge technology solutions tailored to your unique needs.
+    </p>
+    <div class="mt-10">
+      <GetInTouch />
+    </div>
   </div>
   <div class="md:col-span-5">
-    <Image class="aspect-[3/2] object-cover w-full md:aspect-auto" src={heroImg} alt="TODO"/>
+    <Image class="aspect-[3/2] object-cover w-full h-full md:aspect-auto" src={heroImg} alt="TODO"/>
   </div>
 </section>

@@ -1,14 +1,54 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "~/layouts/Layout.astro";
+import Container from "~/components/Container.astro";
 
 // Get the list of blog post entries, we can add pagination at a later date.
 const blogEntries = await getCollection("blog");
 blogEntries.sort(
   (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()
 );
+
+const title="Redefine Blog"
+const description="Insights into some thoughts from Redefine"
 ---
 
-<Layout title="Redefine Blog">
-  <div>Blog Placeholder</div>
+<Layout title={title} description={description}>
+  <Container>
+    <div class="mt-16 text-center">
+      <h1 class="text-4xl lg:text-5xl font-mono font-bold tracking-tight">
+        SELECT * FROM Blog;
+      </h1>
+      <p class="text-lg mt-4">Insights into some thoughts from Redefine</p>
+    </div>
+    <div class="mt-16 space-y-16 flex justify-center">
+      {
+        blogEntries.map((entry) => (
+          <article class="flex max-w-xl flex-col items-start justify-between">
+            <div class="flex items-center gap-x-4 text-xs">
+              <time
+                datetime={entry.data.publishDate.toISOString()}
+                class="text-gray-500"
+              >
+                {entry.data.publishDate.toLocaleDateString("en-US", {
+                  dateStyle: "long",
+                })}
+              </time>
+            </div>
+            <div class="group relative">
+              <h2 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                <a href={`/blog/${entry.slug}`}>
+                  <span class="absolute inset-0" />
+                  {entry.data.title}
+                </a>
+              </h2>
+              <p class="mt-5 text-sm leading-6 text-gray-600 line-clamp-3">
+                {entry.data.description}
+              </p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </Container>
 </Layout>

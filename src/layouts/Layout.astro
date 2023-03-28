@@ -1,21 +1,26 @@
 ---
-import { Image } from "astro:assets";
 import SEO from "~/components/SEO.astro";
-import logoLight from "~/assets/logo-light.png";
-import logoDark from "~/assets/logo-dark.png";
-import "@fontsource/montserrat-alternates"
-import "~/styles/tailwind.css";
+import SkipLink from "~/components/SkipLink.astro";
+import Navbar from "~/components/Navbar.astro";
+import Footer from "~/components/Footer.astro";
+import "@fontsource/montserrat-alternates";
 
 export interface Props {
   title: string;
+  description: string;
+  index?: boolean;
 }
 
-const title = [Astro.props.title, "Redefine"].filter(Boolean).join(" | ");
+const { description, index, title: propTitle } = Astro.props;
+
+const title = (index ? ["Redefine", propTitle] : [propTitle, "Redefine"])
+  .filter(Boolean)
+  .join(" | ");
+
 const resolvedImage = {
   src: new URL("og/redefine.png", Astro.site).toString(),
-  alt: "Everything you know about data, reimaged",
+  alt: description,
 };
-const currentYear = new Date().getFullYear();
 ---
 
 <!DOCTYPE html>
@@ -35,70 +40,16 @@ const currentYear = new Date().getFullYear();
     <SEO
       name="Redefine"
       title={title}
-      description="We help companies with all their data needs. Whether you are starting a digital transformation or processing billions of events per day."
+      description={description}
       image={resolvedImage}
     />
   </head>
-  <body class="selection:bg-redefine-primary">
-    {/* SkipLink */}
-    <div class="flex min-h-screen flex-col">
-      <header>
-        <nav
-          aria-label="Primary"
-          class="flex items-center w-full mx-auto max-w-screen-2xl p-8 h-20"
-        >
-          <a href="/" title="Home">
-            <Image
-              src={logoDark}
-              width={240}
-              alt="Redefine Technologies logo"
-            />
-          </a>
-          <div class="ml-16 hidden gap-16 lg:flex">
-            <a
-              href="/blog"
-              class="transition-colors text-gray-900 hover:text-redefine-primary"
-              >Blog</a
-            >
-            <a
-              href="/contact"
-              class="transition-colors text-gray-900 hover:text-redefine-primary"
-              >Contact</a
-            >
-          </div>
-        </nav>
-      </header>
-
-      <main>
-        <slot />
-      </main>
-
-      <footer>
-        <div class="bg-gray-900 text-white">
-          <div class="grid grid-cols-1 space-y-5 md:grid-cols-3 w-full mx-auto max-w-screen-2xl p-10">
-            <div class="p-4">
-              <a href="/" title="Home" class="">
-                <Image
-                  src={logoLight}
-                  width={176}
-                  alt="Redefine Technologies logo"
-                />
-              </a>
-              <p class="mt-4 max-w-xs text-xs text-gray-400">
-                Redefine is registered in England and Wales as Redefine
-                Technologies Limited (No. 13161425)
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="py-5">
-          <div
-            class="mx-auto flex max-w-7xl justify-center text-xs text-gray-600"
-          >
-            &#169; {currentYear} Redefine Technologies. All Rights Reserved
-          </div>
-        </div>
-      </footer>
-    </div>
+  <body class="selection:bg-redefine-primary flex min-h-screen flex-col">
+    <SkipLink />
+    <Navbar />
+    <main id="main-content" class="flex flex-1 flex-col">
+      <slot />
+    </main>
+    <Footer />
   </body>
 </html>

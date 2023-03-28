@@ -12,15 +12,19 @@ export async function getStaticPaths() {
 }
 
 const { policy } = Astro.props;
-const { title, updatedDate } = policy.data;
-const { Content } = await policy.render()
+const { title, updatedDate, description } = policy.data;
+const { Content } = await policy.render();
 ---
 
-<Layout title={title}>
-  <section class="w-full mx-auto max-w-lg pb-40 pt-20">
-    <p class="text-center">Last updated on {updatedDate.toLocaleDateString("en-US", { dateStyle: "long"})}</p>
+<Layout title={title} description={description}>
+  <section class="w-full mx-auto max-w-4xl pb-40 pt-20">
     <h1 class="text-4xl text-center font-semibold">{title}</h1>
-    <article class="prose">
+    <p class="text-center text-sm text-gray-600">
+      Last updated on {
+        updatedDate.toLocaleDateString("en-US", { dateStyle: "long" })
+      }
+    </p>
+    <article class="pt-10 prose max-w-[100ch]">
       <Content />
     </article>
   </section>

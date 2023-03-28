@@ -1,0 +1,16 @@
+---
+export interface Props {
+  dark?: boolean;
+}
+
+const { dark } = Astro.props;
+---
+
+<a
+  href="/contact"
+  class={`transition-colors text-md tracking-widest font-semibold hover:text-redefine-primary ${
+    dark ? "text-gray-200" : "text-redefine-secondary"
+  }`}
+>
+  Get in touch <span aria-hidden="true">→</span>
+</a>

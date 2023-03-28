@@ -84,10 +84,12 @@ const ensureTrailingSlash = (url: string | URL) => url.toString().replace(/\/$/,
 <!-- Tracking -->
 <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-PCKNH5GDVV" />
 <script type="text/partytown">
-  window.dataLayer = window.dataLayer || [];
-  function gtag() {
-    dataLayer.push(arguments);
-  }
-  gtag("js", new Date());
-  gtag("config", "G-PCKNH5GDVV");
+  // if (import.meta.env.PROD) {
+	// 	window.dataLayer = window.dataLayer || [];
+	// 	function gtag() {
+	// 		dataLayer.push(arguments);
+	// 	}
+	// 	gtag("js", new Date());
+	// 	gtag("config", "G-PCKNH5GDVV");
+	// }
 </script>
