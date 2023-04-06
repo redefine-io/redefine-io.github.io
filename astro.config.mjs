@@ -9,7 +9,7 @@ import prefetch from "@astrojs/prefetch";
 // https://astro.build/config
 export default defineConfig({
   site: "https://redefine.io",
-  trailingSlash: "never",
+  trailingSlash: "always",
   integrations: [sitemap(), tailwind(), mdx(), partytown({
     config: {
       forward: ["dataLayer.push"]
