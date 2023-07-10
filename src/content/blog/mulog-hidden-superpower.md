@@ -37,7 +37,7 @@ associated order. It even tracks the processing time for each operation and more
 While traditional loggers like log4j primarily target human consumers, ***μ/log***
 events are designed to be consumed by machines. In modern systems composed of
 hundreds or thousands of microservices, it is impossible for humans to make
-sense of the huge amound of text-based messages alone.
+sense of the huge amount of text-based messages alone.
 Software is necessary to sift through hundreds of millions or billions of events to
 find the desired information.
 
