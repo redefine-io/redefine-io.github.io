@@ -71,15 +71,49 @@ features and patterns used throughout our platform and services.
 
 The general usage is similar to the Cognitect's aws-api library:
 
-![General use](../../assets/aws-mulog/general-use.png)
+```clojure
+;; create a client for S3
+(def s3 (make-client cfg :s3))
+
+;; To Invoke an operation the general form is:
+;; (invoke client operation request)
+(invoke s3 :GetObject {:Bucket "redefine-test" :Key "some-object.dat"})
+```
 
 Our internal `invoke` function looks like this:
 
-![AWS invoke function](../../assets/aws-mulog/aws-invoke.png)
+```clojure
+(defn invoke
+  "Invokes an AWS request and returns the result.
+   Errors are contained within the result"
+  [client operation request]
+  (let [req {:op operation :request request}]
+    (μ/trace :aws/request
+      {:pairs   [:api       (service client)
+                 :operation operation
+                 :request   request]
+       :capture (fn [response]
+                  (when (anomaly? response)
+                    {:mulog/outcome :error
+                     :exception (anomaly-reason response)}))}
+      (aws/invoke client req))))
+```
 
 Which produces the following event:
 
-![AWS request sample event](../../assets/aws-mulog/sample-event.png)
+```clojure
+{:mulog/event-name :aws/request,
+ :mulog/timestamp  1688907460929,
+ :mulog/trace-id   #mulog/flake "4r-oNlJf6rHAs7mGiLb2p0aroteHz5OR",
+ :mulog/root-trace #mulog/flake "4r-oNlJf6rHAs7mGiLb2p0aroteHz5OR",
+ :mulog/duration   109400167,
+ :mulog/namespace  "user",
+ :mulog/outcome    :ok,
+ :api              :s3,
+ :operation        :GetObject,
+ :request          {:Bucket "redefine-test",
+                    :Key    "some-object.dat"}}
+```
 
 - Line 1: Indicates that this is an `:aws/request` event.
 - Line 2: Provides the timestamp when the request was initiated.
@@ -105,7 +139,13 @@ automated tests and instruct ***μ/log*** to write all the events to a file.
 
 We start ***μ/log***'s publisher and configure it to write the events to a file on our disk:
 
-![***μ/log*** configuration](../../assets/aws-mulog/mulog-config.png)
+```clojure
+(require '[com.brunobonacci.mulog :as μ])
+(def pub (μ/start-publisher!
+           {:type :simple-file
+            :filename "/tmp/mulog/events.edn"}))
+```
+
 
 The next step is to run the tests for the service from which we want to extract
 the policy. The tests can be executed against
@@ -119,7 +159,16 @@ automatically generate our policy.
 The first step is to parse the [EDN](https://github.com/edn-format/edn) file and
 load the events:
 
-![Parsing events](../../assets/aws-mulog/parse-events.png)
+```clojure
+(defn parse-file
+  [file]
+  (->> file
+    slurp
+    str/split-lines
+    (map (partial edn/read-string {:default tagged-literal}))
+    (filter (where :mulog/event-name :is? :aws/request))))
+```
+
 
 The expression `(where :mulog/event-name :is? :aws/request)` returns a predicate
 function that evaluates to true if the event is a `:aws/request`. I developed a
@@ -128,7 +177,23 @@ predicate functions easier to be read and understood by humans.
 
 When we execute `parse-file`, we obtain the events as Clojure maps:
 
-![Parsed events](../../assets/aws-mulog/reload-events.png)
+```clojure
+(parse-file "/tmp/mulog/events.edn" )
+;; => ({:mulog/event-name :aws/request,
+;;     :mulog/timestamp  1688907460929,
+;;     :mulog/trace-id   #mulog/flake "4r-oNlJf6rHAs7mGiLb2p0aroteHz5OR",
+;;     :mulog/root-trace #mulog/flake "4r-oNlJf6rHAs7mGiLb2p0aroteHz5OR",
+;;     :mulog/duration   109400167,
+;;     :mulog/namespace  "user",
+;;     :mulog/outcome    :ok,
+;;     :api              :s3,
+;;     :operation        :GetObject,
+;;     :request          {:Bucket "redefine-test",
+;;                        :Key    "some-object.dat"}}
+;;     ...
+;;    )
+```
+
 
 To generate an AWS Policy, we need to extract the following fields:
 - The AWS service used, indicated by the `:api` key in our event.
@@ -145,7 +210,28 @@ For each event, we generate the following result:
 
 So we encode such information in a nested map and extract the opertaions:
 
-![Extract operations](../../assets/aws-mulog/extract-operations.png)
+```clojure
+(def resource
+  {:dynamodb    {:Query         :TableName
+                 :GetItem       :TableName}
+   :s3          {:GetObject     :Bucket
+                 :PutObject     :Bucket
+                 :ListObjectsV2 :Bucket}})
+
+(defn extract-operations
+  [aws-events]
+  (->> aws-events
+    (mapcat
+      (fn [{:keys [api operation request]}]
+        (let [resource-lookup (get-in resource [api operation] (constantly nil))
+              resources       (resource-lookup request)]
+          (if (sequential? resources)
+            (map (fn [p] (merge {:api api :action operation} p)) resources)
+            [{:api api :action operation :resource resources}]))))
+    (distinct)
+    (sort-by (juxt :api :action :resource))))
+```
+
 
 Some operations, like DynamoDB's `TransactWriteItems`, bundle multiple other
 operations that need to be included individually in the policy. Other
@@ -156,7 +242,18 @@ the resource, we can provide a Clojure function to extract the required actions.
 In just a few lines of code, we obtain the list of operations performed by our
 microservice along with the resource information:
 
-![operations](../../assets/aws-mulog/operations.png)
+```clojure
+(->> file
+  parse-file
+  extract-operations)
+;; =>({:api :dynamodb, :action :GetItem, :resource "table1"}
+;;    {:api :dynamodb, :action :PutItem, :resource "table1"}
+;;    {:api :dynamodb, :action :Query,   :resource "table1"}
+;;    {:api :dynamodb, :action :UpdateItem, :resource "table2"}
+;;    {:api :s3, :action :GetObject, :resource "redefine-test"}
+;;    {:api :s3, :action :ListObjectsV2, :resource "redefine-test"}
+;;    {:api :s3, :action :PutObject, :resource "redefine-test"})
+```
 
 Pretty cool 😎!
 
@@ -164,11 +261,47 @@ AWS policies require the resource to be expressed in ARN formatwhile in most
 requests, the resource is specified by a simple name. Therefore, we need to
 expand short names to AWS ARNs:
 
-![resource ARN](../../assets/aws-mulog/resource-arn.png)
+```clojure
+(defn resources->arn
+  [region account operations]
+  (->> operations
+    (map
+      (fn [{:keys [api resource] :as op}]
+        (assoc op :resource
+          (if (str/starts-with? resource "arn:")
+            resource
+            (case api
+              :dynamodb    (format "arn:aws:dynamodb:%s:%s:table/%s"
+                             region account resource)
+              :s3          (format "arn:aws:s3:::%s" resource)
+              :eventbridge (format "arn:aws:events:%s:%s:event-bus/%s"
+                             region account resource)
+              resource)))))))
+```
+
 
 Now we have the full resource name in ARN format:
 
-![full operations](../../assets/aws-mulog/full-operations.png)
+```clojure
+(->> file
+  parse-file
+  extract-operations
+  (resources->arn "eu-west-1" "123456789012"))
+;;  ...
+;;     {:api :s3,
+;;      :action :GetObject,
+;;      :resource "arn:aws:s3:::redefine-play-reclogs"}
+;;     {:api :s3,
+;;      :action :GetObject,
+;;      :resource "arn:aws:s3:::redefine-test"}
+;;     {:api :s3,
+;;      :action :ListObjectsV2,
+;;      :resource "arn:aws:s3:::redefine-test"}
+;;     {:api :s3,
+;;      :action :PutObject,
+;;      :resource "arn:aws:s3:::redefine-test"})
+```
+
 
 That's all we need to generate a policy.
 
@@ -177,7 +310,28 @@ That's all we need to generate a policy.
 The final step is to generate a valid Policy document. A policy groups
 permissions by resource. We add the following function to our pipeline:
 
-![extract policy](../../assets/aws-mulog/extract-policy.png)
+```clojure
+(defn- policy-statement
+  [actions]
+  {:actions (mapv (fn [{:keys [api action]}]
+                    (str (name api) ":" (name action))) actions)
+   :resources [(:resource (first actions))]})
+
+
+(defn extract-policy
+  ([operations-list]
+   (extract-policy nil operations-list))
+  ([policy-name operations-list]
+   (->> operations-list
+     (group-by :resource)
+     (vals)
+     (map policy-statement)
+     ((fn [p]
+        {:type "aws_iam_policy_document"
+         :name (or policy-name "your-policy-document")
+         :statements p})))))
+```
+
 
 At [Redefine](https://redefine.io/) we use [Terraform](https://www.terraform.io/) to manage our infrastructure using
 *Infrastructure As Code* principles.
@@ -188,16 +342,73 @@ is a very simple library based on [Mustache format](https://mustache.github.io/m
 
 Here is the template we need:
 
-![template](../../assets/aws-mulog/template.png)
+```mustache
+data "aws_iam_policy_document" "{{{name}}}" {
+
+  {{#statements}}
+
+  statement {
+    actions = [
+      {{#actions}}
+      "{{.}}",
+      {{/actions}}
+    ]
+    resources = ["{{#resources}}{{.}}{{/resources}}"]
+  }
+  {{/statements}}
+}
+```
 
 Now we can render the policy we extracted in our previous steps:
 
-![render-policy](../../assets/aws-mulog/render-policy.png)
+```clojure
+(defn render-terraform-policy-document
+  [{:keys [type] :as policy}]
+  (clo/render-resource (str "terraform-" type ".mustache") policy))
+
+
+;; the final pipeline:
+(->> file
+  parse-file
+  extract-operations
+  (resources->arn "eu-west-1" "123456789012")
+  (extract-policy)
+  render-terraform-policy-document
+  println)
+```
 
 And the final result is a Terraform policy 😎:
 
-![render-policy](../../assets/aws-mulog/the-policy.png)
+```hcl
+data "aws_iam_policy_document" "your-policy-document" {
 
+
+  statement {
+    actions = [
+      "dynamodb:GetItem",
+      "dynamodb:PutItem",
+      "dynamodb:Query",
+    ]
+    resources = ["arn:aws:dynamodb:eu-west-1:123456789012:table/table1"]
+  }
+
+  statement {
+    actions = [
+      "dynamodb:UpdateItem",
+    ]
+    resources = ["arn:aws:dynamodb:eu-west-1:123456789012:table/table2"]
+  }
+
+  statement {
+    actions = [
+      "s3:GetObject",
+      "s3:ListObjectsV2",
+      "s3:PutObject",
+    ]
+    resources = ["arn:aws:s3:::redefine-test"]
+  }
+}
+```
 
 ### Conclusion
 
