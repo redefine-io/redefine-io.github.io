@@ -1,12 +1,8 @@
 ---
 import GetInTouch from "~/components/GetInTouch.astro";
 
-import { getImage } from "astro:assets";
+import { Image } from "astro:assets"
 import heroImg from "~/assets/hero.jpg";
-const heroImg320 = await getImage({src: heroImg, width: 320})
-const heroImg427 = await getImage({src: heroImg, width: 427})
-const heroImg533 = await getImage({src: heroImg, width: 533})
-const heroImg640 = await getImage({src: heroImg, width: 640})
 ---
 
 <div class="bg-redefine-secondary">
@@ -26,11 +22,11 @@ const heroImg640 = await getImage({src: heroImg, width: 640})
       </div>
     </div>
     <div class="md:col-span-5">
-      <img class="aspect-[3/2] object-cover w-full h-full md:aspect-auto"
-        srcset={`${heroImg320.src} 320w, ${heroImg427.src} 427w, ${heroImg533.src} 533w, ${heroImg640.src} 640w`}
-        src={heroImg640.src}
-        sizes="(max-width: 768px) 640px, (max-width: 1024px) 427px, (max-width: 1280px) 533px, 640px"
-        alt="Man sitting at a desk looking at his laptop"/>
+      <Image
+        src={heroImg}
+        alt="Man sitting at a desk looking at his laptop"
+        class="aspect-[3/2] object-cover w-full h-full md:aspect-auto"
+      />
     </div>
   </section>
 </div>

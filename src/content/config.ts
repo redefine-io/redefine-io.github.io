@@ -14,7 +14,7 @@ export const collections = {
       title: z.string(),
       description: z.string(),
       publishDate: z.coerce.date(),
-      author: z.string().default("Redefine"),
+      author: z.string().default("redefine"),
     }),
   }),
   policies: defineCollection({
