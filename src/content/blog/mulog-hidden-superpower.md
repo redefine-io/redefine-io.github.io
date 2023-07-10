@@ -5,7 +5,7 @@ AWS policy documents for our services."
 publishDate: 2023-07-09
 categories:  ["observability"]
 tags:        ["µ/log", "AWS", "Clojure", "logging", "tracing", "monitoring", "observability"]
-author:      Bruno Bonacci
+author:      bruno-bonacci
 ---
 
 > TL;DR \

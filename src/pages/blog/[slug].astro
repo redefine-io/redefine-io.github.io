@@ -1,7 +1,9 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, getEntryBySlug } from "astro:content";
+import { Image } from "astro:assets";
 import Layout from "~/layouts/Layout.astro";
 import Container from "~/components/Container.astro";
+import FormattedDate from "~/components/FormattedDate.astro";
 
 export async function getStaticPaths() {
   const blog = await getCollection("blog");
@@ -19,6 +21,8 @@ const {
   data: { title, description },
 } = post;
 const { Content } = await render();
+
+const author = await getEntryBySlug("authors", data.author);
 ---
 
 <style is:global>
@@ -35,19 +39,34 @@ const { Content } = await render();
     margin-right: 1.5rem;
     display: inline-block;
     text-align: right;
-    color: rgba(115,138,148,.4)
+    color: rgba(115, 138, 148, 0.4);
   }
 </style>
 
 <Layout title={title} description={description}>
   <Container>
     <div class="max-w-3xl mx-auto my-16">
-      <div>
-        <h1 class="text-4xl lg:text-5xl font-bold lg:tracking-tight">
+      <header class="mx-auto w-full max-w-3xl text-center">
+        <FormattedDate class="text-gray-500" date={data.publishDate} />
+        <h1 class="mt-4 text-4xl lg:text-5xl font-bold lg:tracking-tight">
           {data.title}
         </h1>
-      </div>
-      <article class="mt-6 prose prose-lg">
+        {
+          author && (
+            <div class="flex items-center justify-center gap-4 mt-4">
+              <span>By</span>
+              <Image
+                class="h-8 w-8 rounded-full"
+                src={author.data.image}
+                alt=""
+                aria-hidden="true"
+              />
+              {author.data.name}
+            </div>
+          )
+        }
+      </header>
+      <article class="mt-10 pt-10 border-t sm:mt-16 sm:pt-16 prose prose-lg">
         <Content />
       </article>
     </div>

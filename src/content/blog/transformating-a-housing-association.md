@@ -2,7 +2,7 @@
 title: "Transforming a Housing Association"
 description: "We discuss how Redefine helped a large UK housing association undergo a successful digital transformation and implement a Data Lake to drive data-driven decision-making."
 publishDate: 2023-03-27
-author: Redefine
+author: redefine
 ---
 
 ## The Power of Data-Driven Decision-Making with Redefine's Data Lake
