@@ -10,6 +10,7 @@ import prefetch from "@astrojs/prefetch";
 export default defineConfig({
   site: "https://redefine.io",
   trailingSlash: "always",
+  compressHTML: true,
   integrations: [sitemap(), tailwind(), mdx(), partytown({
     config: {
       forward: ["dataLayer.push"]
