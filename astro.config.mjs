@@ -15,6 +15,11 @@ export default defineConfig({
       forward: ["dataLayer.push"]
     }
   }), prefetch()],
+  markdown: {
+    shikiConfig: {
+      theme: "material-palenight"
+    },
+  },
   experimental: {
     assets: true
   }
