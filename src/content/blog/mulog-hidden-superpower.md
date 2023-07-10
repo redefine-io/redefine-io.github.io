@@ -71,15 +71,15 @@ features and patterns used throughout our platform and services.
 
 The general usage is similar to the Cognitect's aws-api library:
 
-![General use](/images/aws-mulog/general-use.png)
+![General use](../../assets/aws-mulog/general-use.png)
 
 Our internal `invoke` function looks like this:
 
-![AWS invoke function](/images/aws-mulog/aws-invoke.png)
+![AWS invoke function](../../assets/aws-mulog/aws-invoke.png)
 
 Which produces the following event:
 
-![AWS request sample event](/images/aws-mulog/sample-event.png)
+![AWS request sample event](../../assets/aws-mulog/sample-event.png)
 
 - Line 1: Indicates that this is an `:aws/request` event.
 - Line 2: Provides the timestamp when the request was initiated.
@@ -105,7 +105,7 @@ automated tests and instruct ***μ/log*** to write all the events to a file.
 
 We start ***μ/log***'s publisher and configure it to write the events to a file on our disk:
 
-![***μ/log*** configuration](/images/aws-mulog/mulog-config.png)
+![***μ/log*** configuration](../../assets/aws-mulog/mulog-config.png)
 
 The next step is to run the tests for the service from which we want to extract
 the policy. The tests can be executed against
@@ -119,7 +119,7 @@ automatically generate our policy.
 The first step is to parse the [EDN](https://github.com/edn-format/edn) file and
 load the events:
 
-![Parsing events](/images/aws-mulog/parse-events.png)
+![Parsing events](../../assets/aws-mulog/parse-events.png)
 
 The expression `(where :mulog/event-name :is? :aws/request)` returns a predicate
 function that evaluates to true if the event is a `:aws/request`. I developed a
@@ -128,7 +128,7 @@ predicate functions easier to be read and understood by humans.
 
 When we execute `parse-file`, we obtain the events as Clojure maps:
 
-![Parsed events](/images/aws-mulog/reload-events.png)
+![Parsed events](../../assets/aws-mulog/reload-events.png)
 
 To generate an AWS Policy, we need to extract the following fields:
 - The AWS service used, indicated by the `:api` key in our event.
@@ -145,7 +145,7 @@ For each event, we generate the following result:
 
 So we encode such information in a nested map and extract the opertaions:
 
-![Extract operations](/images/aws-mulog/extract-operations.png)
+![Extract operations](../../assets/aws-mulog/extract-operations.png)
 
 Some operations, like DynamoDB's `TransactWriteItems`, bundle multiple other
 operations that need to be included individually in the policy. Other
@@ -156,7 +156,7 @@ the resource, we can provide a Clojure function to extract the required actions.
 In just a few lines of code, we obtain the list of operations performed by our
 microservice along with the resource information:
 
-![operations](/images/aws-mulog/operations.png)
+![operations](../../assets/aws-mulog/operations.png)
 
 Pretty cool 😎!
 
@@ -164,11 +164,11 @@ AWS policies require the resource to be expressed in ARN formatwhile in most
 requests, the resource is specified by a simple name. Therefore, we need to
 expand short names to AWS ARNs:
 
-![resource ARN](/images/aws-mulog/resource-arn.png)
+![resource ARN](../../assets/aws-mulog/resource-arn.png)
 
 Now we have the full resource name in ARN format:
 
-![full operations](/images/aws-mulog/full-operations.png)
+![full operations](../../assets/aws-mulog/full-operations.png)
 
 That's all we need to generate a policy.
 
@@ -177,7 +177,7 @@ That's all we need to generate a policy.
 The final step is to generate a valid Policy document. A policy groups
 permissions by resource. We add the following function to our pipeline:
 
-![extract policy](/images/aws-mulog/extract-policy.png)
+![extract policy](../../assets/aws-mulog/extract-policy.png)
 
 At [Redefine](https://redefine.io/) we use [Terraform](https://www.terraform.io/) to manage our infrastructure using
 *Infrastructure As Code* principles.
@@ -188,15 +188,15 @@ is a very simple library based on [Mustache format](https://mustache.github.io/m
 
 Here is the template we need:
 
-![template](/images/aws-mulog/template.png)
+![template](../../assets/aws-mulog/template.png)
 
 Now we can render the policy we extracted in our previous steps:
 
-![render-policy](/images/aws-mulog/render-policy.png)
+![render-policy](../../assets/aws-mulog/render-policy.png)
 
 And the final result is a Terraform policy 😎:
 
-![render-policy](/images/aws-mulog/the-policy.png)
+![render-policy](../../assets/aws-mulog/the-policy.png)
 
 
 ### Conclusion
