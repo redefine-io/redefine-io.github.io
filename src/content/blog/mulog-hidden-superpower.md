@@ -1,7 +1,6 @@
 ---
 title:       "µ/log hidden superpower"
-description: "This post illustrates how we used *μ/log* to automatically generate
-AWS policy documents for our services."
+description: "This post illustrates how we used *μ/log* to automatically generate AWS policy documents for our services."
 publishDate: 2023-07-09
 categories:  ["observability"]
 tags:        ["µ/log", "AWS", "Clojure", "logging", "tracing", "monitoring", "observability"]
