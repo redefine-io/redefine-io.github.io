@@ -1,32 +1,33 @@
 ---
-title:      seque - a clojure.core hidden gem
+title:       "Lazy, Chunked, and Buffered: Understanding Clojure's Lazy Sequences"
 description: "Analysis of the various type of Clojure lazy sequences and their impact on computation"
 publishDate: 2023-09-08
-categories: ["programming"]
-tags:       ["Clojure"]
-author:     bruno-bonacci
+categories:  ["programming"]
+tags:        ["Clojure"]
+author:      bruno-bonacci
 ---
 
 
-The Clojure core namespace has an impressive number of functions, over 600 (to
-my eyeballing count). Even after many years of Clojure development, I still get
-to discover hidden gems. In this post I will show the different type of lazy
-sequences and how consuming a lazy sequence affects the computation. Lazy
-sequences in Clojure have been around since 1.0, so certainly they are not a new
-thing. In Clojure there are different types of lazy sequences: the “truly” lazy
-ones, the chunked sequences and the “buffered” sequences. I’m sure every Clojure
-developer will be familiar with at least the first two types. This post is
-really about the “buffered” sequences (or queued sequences) and their
-behaviour. With the help of some examples, in this post we will explore the
-different types and see how they behave when we consume them.
+The Clojure core namespace boasts an impressive array of functions, numbering
+over 600 by my estimation. Even with many years of Clojure development under my
+belt, I still stumble upon hidden treasures. In this post, I'll delve into how
+the consumption of various lazy sequences influences computation. Lazy sequences
+have been a staple in Clojure since version 1.0, so they're hardly a
+novelty. There are distinct types of lazy sequences in Clojure: the "truly" lazy
+ones, chunked sequences, and "buffered" sequences. I believe most Clojure
+developers will be familiar with at least the first two types. This article
+primarily shines a spotlight on the "buffered" sequences (or queued sequences)
+and their unique behaviors. Through a series of examples, we'll navigate the
+nuances of these sequences and observe their behaviors upon consumption.
+
 
 ## Lazy sequences
 
-To construct a lazy sequence in Clojure in its simplest form we can to use
+In its simplest form, a lazy sequence in Clojure can be constructed using
 [`lazy-seq`](https://clojuredocs.org/clojure.core/lazy-seq). `lazy-seq` takes a
 body of expressions and it delays the evaluation until it is requested,
-similarly to an `iterator` that executes the body only when the `.next` method
-is called.  For example, to create a lazy sequence of all the integers number we
+similarly to an `iterator` that executes the body only when the `.next()` method
+is invoked.  For instance, to create a lazy sequence of all integer numbers we
 can write:
 
 ```clojure
@@ -44,7 +45,7 @@ can write:
 
 There are many other functions in the Clojure core which
 return lazy sequences as well.  For example we could rewrite the previous
-function using iterate:
+function using [`iterate`](https://clojuredocs.org/clojure.core/iterate):
 
 ```clojure
 (defn my-lazy-seq
@@ -59,8 +60,9 @@ The two functions are equivalent. To illustrate the different behaviours let’s
 introduce two functions: `load` and `process`. For the sake of the example let’s
 assume that `my-lazy-seq` returns the path of files to be processed, or the ids
 of some database records to be processed, the function `load` will simulate the
-retrieval from the db, and the function `process` will simulate a function which
-perform a computation on the loaded value.
+retrieval from the db, and the function `process` represents a function
+performing computations on the retrieved data.
+
 
 ```clojure
 (defn load
@@ -76,8 +78,7 @@ perform a computation on the loaded value.
   v)
 ```
 
-If we want to process the first 10 items of `my-lazy-seq` then we could write as
-follow:
+To process the first 10 items of `my-lazy-seq` we could write:
 
 ```clojure
 (->> (my-lazy-seq)
@@ -97,13 +98,14 @@ There are a few things to point out from the above lines:
      attempt to print the result. The default behaviour of the REPL is to print
      the content of a sequence up to the
      [`*print-length*`](https://clojuredocs.org/clojure.core/*print-length*). It
-     is good practice to add this to your REPL configuration. For example:
+     is good practice to set a limit into to your REPL configuration. For example:
      `(set! *print-length* 100)` will tell the REPL to only consume and print
-     the first 100 items of a sequence. The default value is `nil` will tells
+     the first 100 items of a sequence. The default value is `nil` which tells
      the REPL to consume it all. Evaluating lazy infinite sequences like `my-lazy-seq`
      on the REPL without `*print-length*` will cause the REPL to hang.
   4. For completeness I will add a `doall` at the end of each evaluation to
-     force the lazy sequence to be realized.
+     force the lazy sequence to be realized regardless of a specific `*print-length*`
+     configuration.
 
 
 ```clojure
@@ -136,7 +138,7 @@ There are a few things to point out from the above lines:
 ;; => (0 1 2 3 4 5 6 7 8 9)
 ```
 
-That's pretty much what we expected, every item of the lazy sequence is loaded
+That's pretty much what we expected. Every item of the lazy sequence is loaded
 first and then processed in a strict succession.
 
 To better visualize what is happening I've instrumented the `load` and `process`
@@ -157,7 +159,7 @@ executed in larger applications.
 Chunked sequences are an optimisation to reduce the allocation.
 A chunked sequence instead of realizing one element at the time,
 it will realize a chunk of them (usually 32). From a consumer
-point of view it is almost totally transparent. The prime
+point of view, it is almost totally transparent. The prime
 example of chunked sequences is the
 [`range`](https://clojuredocs.org/clojure.core/range) function.
 
@@ -173,8 +175,8 @@ example of chunked sequences is the
 ```
 
 The chunking effect can be seen when applying a transformation like in our
-previous example. If we replace `my-lazy-seq` with `range` this is what we see
-something interesting.
+previous example. If we replace `my-lazy-seq` with `range`, we see something
+interesting.
 
 ```clojure
 ;; clean
@@ -244,13 +246,13 @@ If we look at the execution trace of our previous example we can see that nicely
 
 ![chunked](./images/seque/chunked.jpg)
 
-You can see that as you try realize first item, the first chunk of 32 is
-realized then all the realized items are kept in memory until the chunk is fully
-consumed, finally once the consumer asks for the the 33rd item a new chunk of 32
-items is realized.
+As you attempt to realize the first item, the initial chunk of 32 items is
+realized. All these items remain in memory until the chunk is entirely
+consumed. Once the consumer requests the 33rd item, a new chunk of 32 items is
+realized.
 
-Chunked sequences are useful when the cost of realizing each item is small thus
-providing an optimisation in terms off allocations.
+Chunked sequences are beneficial when the cost of realizing each item is
+minimal, offering an optimization in terms of allocations.
 
 To create a chunked sequence the Clojure core provides a set of functions:
 [`chunk-buffer`](https://clojuredocs.org/clojure.core/chunk-buffer),
@@ -263,24 +265,24 @@ have already seen.
 
 ## Buffered sequences
 
-Buffered sequences have some similarity with the chunked sequences but their
-behaviour is slightly different. Their objective is to minimize the consumer
-wait time by storing a number of realized items in a buffer (queue).  Buffered
-sequences have a fix length buffer. A Clojure agent tries its best to keep the
-buffer always full of realized items, when the consumer needs a new item to
-process there is a bunch of them already available.
+Buffered sequences share some similarities with chunked sequences, but they
+exhibit a slightly different behavior. Their main goal is to minimize the wait
+time for consumers by storing a set number of realized items in a buffer (or
+queue). Buffered sequences maintain a fixed-length buffer. A Clojure agent works
+diligently to ensure the buffer is consistently populated with realized
+items. Consequently, when the consumer requires a new item for processing,
+multiple items are readily available.
 
 ![buffer](./images/seque/buffer.png)
 
-On the right-hand side there is an unrealized lazy sequence. A Clojure agent
-will attempt to fill the buffer as fast as it can. The items in the buffer are
-always realized. Then the consumer will fetch items from the buffer in the same
-order as they were in the sequence (fifo) to continue the processing.
+On the right, there's an unrealized lazy sequence. A Clojure agent will try to
+fill the buffer as swiftly as possible. The items in the buffer are always in a
+realized state. The consumer then retrieves items from the buffer in the same
+sequence order (FIFO) for further processing.
 
-the Clojure core which builds such sequences is [`seque`](https://clojuredocs.org/clojure.core/seque).
+The Clojure core to build such sequences is [`seque`](https://clojuredocs.org/clojure.core/seque).
 
-Let's see in our previous example how buffered sequences will affect the
-computation.
+Let's examine how buffered sequences impact computation, using our previous example.
 
 ```clojure
 (->> (my-lazy-seq)
@@ -320,20 +322,21 @@ computation.
 ;; => (0 1 2 3 4 5 6 7 8 9)
 ```
 
-From the output, you can see the agent at work. `Loading:` and `Processing:`
-statements are interleaved in a seemingly random order. That's because the agent
-in the background is running on a different thread.  By introducing a buffered
-sequence between the `load` and `process` we have a sort of **"pre-fetcher"**
-which will attempt to keep *at most* 5 items always realized and ready to be
-processed.  As items are consumed from the buffer the agent tries to replace
-them with new items from the unrealized sequence upstream. The key difference
-compared to the chunked sequences is that while the chunked sequences do not
-realize items until the first item of a chunk is requested, buffered sequences
-realize enough items to fill the buffer ahead of the consumption.
+From the output, it's evident how the agent works. `Loading:` and `Processing:`
+statements are interleaved in a seemingly random order. This is attributable to
+the agent operating on a separate thread in the background. By introducing a
+buffered sequence between the `load` and `process` we have a sort of
+**"pre-fetcher"** which attempts to keep *at most* 5 items always realized
+and ready to be processed.  As items are consumed from the buffer the agent
+tries to replace them with new items from the unrealized sequence upstream. The
+key difference compared to the chunked sequences is that while the chunked
+sequences do not realize items until the first item of a chunk is requested,
+buffered sequences realize enough items to fill the buffer ahead of the
+consumption.
 
 ![seque](./images/seque/seque.jpg)
 
-`seque` is an excellent choice when it is important to minimize the wait on
+`seque` is an excellent choice when it is important to minimize the wait-time on
 consumer side and have items readily available. The important aspect is that it
 allows for a configurable size. By carefully selecting the buffer size we
 are able to control how many items (potentially big) are realized in memory at
@@ -364,12 +367,12 @@ Even though we created a buffer of 5 items we can see that there are 6 items
 realized here. The buffer is backed by a blocking queue. The agent tries to
 continuously push new items to the buffer, so when the buffer is full, there is
 one more item being consumed from the upstream sequence by the agent who is
-blocked on a queue `offer` operation. As soon as an item is consumed, the
-offer will be accepted and the in-flight item will be inserted into the queue.
+blocked on the queue `offer` operation. As soon as an item is consumed, the
+`offer` will be accepted and the in-flight item will be inserted into the queue.
 
 ## Parallel pre-fetcher
 
-With a small modification we can load the items in parallel. That's useful when
+With a small change we can load the items in parallel. That's useful when
 the upstream operation (`load` in this case) is dominated by IO.
 
 ```clojure
@@ -497,14 +500,19 @@ My laptop has 10 CPU cores so the `load` ran on 12 items.
 
 ## Conclusions
 
-In this post we have looked at the different types of lazy sequences and how
-they affect the execution of mapping functions.  We looked at three different
-types of lazy sequences: the "truly" lazy which realize one item at the time,
-the chunked sequences which realize a number of items at once, and the buffered
-sequeces which try keep a buffer of realized items always available for
-consumption. The key difference between the chunked sequences and the buffered
-sequences is that buffered sequences do not wait for the consumer to ask for an
-item, they preemptively realize a number of items from the upstream sequence.
+Throughout this post, we've delved into various types of lazy sequences and
+examined their influence on the execution of mapping functions. We explored
+three distinct categories of lazy sequences:
 
-All the different types have their place and their use in an applications, it is
-up to us to use the best type for solving the problem we have at hand.
+1. The "truly" lazy sequences, which realize items individually as they are requested.
+2. The chunked sequences, which process multiple items simultaneously.
+3. The buffered sequences, which consistently maintain a reservoir of realized items, ready for consumption.
+
+The salient distinction between chunked and buffered sequences lies in their
+approach to realization. While chunked sequences await a consumer's request for
+an item, buffered sequences take a proactive stance, anticipating the need and
+realizing a batch of items from the preceding sequence.
+
+Each of these types occupies its unique niche and finds relevance in various
+applications. It rests upon us, the developers, to judiciously select the most
+fitting type tailored to the specific challenges we encounter.
