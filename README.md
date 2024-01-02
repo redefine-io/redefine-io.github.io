@@ -8,3 +8,4 @@ docker run --rm -it -p3000:3000 -v$(pwd):/app -v/app/node_modules -v/app/dist we
 ```
 
 Then open your browser at: http://localhost:3000/
+
