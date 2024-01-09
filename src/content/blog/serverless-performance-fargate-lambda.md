@@ -90,6 +90,8 @@ operations.
 ## Environment Setup
 Our tests were carried out in a well-configured AWS environment.
 
+For this test we used the `eu-west-1`/Ireland region.
+
 Lambda Setup:
 - AWS Lambda with 10GB of memory
 - custom runtime based on Amazon Linux 2023
@@ -100,6 +102,15 @@ Fargate Setup:
 - ARM64 architecture
 - The container is based on Amazon Linux 2023 and uses the same binary as AWS
   Lambda, ensuring consistency across both services.
+
+S3 config:
+- VPC endpoint
+
+EFS setup:
+- Performance mode: General Purpose
+- Throughput mode: Elastic
+- Encryption enabled
+- VPC endpoint
 
 We prepared an array of files of varying sizes for our tests, located on both S3
 and EFS. These included files ranging from 1MiB to 1000MiB. This range was
