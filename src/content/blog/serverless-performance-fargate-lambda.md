@@ -90,18 +90,21 @@ operations.
 ## Environment Setup
 Our tests were carried out in a well-configured AWS environment.
 
-For this test we used the `eu-west-1`/Ireland region.
+For this test we used the `eu-west-1`/Ireland region. Services are running
+in a purpose built VPC network.
 
 Lambda Setup:
 - AWS Lambda with 10GB of memory
 - custom runtime based on Amazon Linux 2023
 - ARM64 architecture
+- Isolated custom VPC
 
 Fargate Setup:
 - AWS Fargate ECS with 8 vCPUs and 32GB memory
 - ARM64 architecture
 - The container is based on Amazon Linux 2023 and uses the same binary as AWS
   Lambda, ensuring consistency across both services.
+- Isolated custom VPC
 
 S3 config:
 - VPC endpoint
