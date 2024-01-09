@@ -252,3 +252,6 @@ applications requiring consistent network performance. However, it’s important
 to note that serverless solutions do excel in scenarios where the primary
 demands are CPU and memory-bound. In these cases, the scalability and efficiency
 of serverless computing can be fully leveraged to great effect.
+
+Feel free to [download](/data/serverless-perf/ecs-lambda-read-perf.ndjson) the
+data gathered during this expirement and run your own analysis.
