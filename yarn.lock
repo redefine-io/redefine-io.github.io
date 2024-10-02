@@ -560,11 +560,6 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.19.4.tgz#d46a6e220a717f31f39ae80f49477cc3220be0f0"
   integrity sha512-HP0GDNla1T3ZL8Ko/SHAS2GgtjOg+VmWnnYLhuTksr++EnduYB0f3Y2LzHsUwb2iQ13JGoY6G3R8h6Du/WG6uA==
 
-"@fontsource/montserrat-alternates@^4.5.11":
-  version "4.5.11"
-  resolved "https://registry.yarnpkg.com/@fontsource/montserrat-alternates/-/montserrat-alternates-4.5.11.tgz#9a6f6ea56f5d30152e567389b8c142fbda55ca22"
-  integrity sha512-A9bsrj56gM3pQE8OZOj7/tu+O7j1ut1wOiPkFPQnKVU1ouDAhSh7fH+phDiINyaNiTvduZ9BfKwl66KdKgHMrg==
-
 "@jridgewell/gen-mapping@^0.3.0", "@jridgewell/gen-mapping@^0.3.2":
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/@jridgewell/gen-mapping/-/gen-mapping-0.3.3.tgz#7e02e6eb5df901aaedb08514203b096614024098"
