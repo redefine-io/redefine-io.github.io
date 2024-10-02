@@ -4,6 +4,7 @@ import Hero from "~/components/Hero.astro";
 import ContentSection from "~/components/ContentSection.astro";
 import HowWeWork from "~/components/HowWeWork.astro";
 import GetInTouchCTA from "~/components/GetInTouchCTA.astro";
+import OurServices from "~/components/OurServices.astro";
 
 const title = "Data Reimagined";
 const description = `At Redefine, we empower businesses to harness the full power
@@ -12,7 +13,10 @@ of their data through advanced data engineering and analytics solutions.`;
 
 <Layout title={title} description={description} index={true}>
   <Hero />
-  <ContentSection class="bg-redefine-primary">
+  <OurServices />
+
+
+  <!-- <ContentSection class="bg-redefine-primary">
     <Fragment slot="title">
       Are your business decisions driven by data?
     </Fragment>
@@ -54,5 +58,5 @@ of their data through advanced data engineering and analytics solutions.`;
     </Fragment>
   </ContentSection>
   <HowWeWork />
-  <GetInTouchCTA />
+  <GetInTouchCTA /> -->
 </Layout>
