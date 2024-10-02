@@ -43,9 +43,9 @@ const items = [
           Our Services
         </p>
         <p class="mt-6 text-lg leading-8 text-gray-600">
-          Whether you need data strategy consulting, cloud solutions,
-          or cutting-edge AI, our <strong>#DataReimagined</strong> approach ensures we deliver
-          innovative, scalable, and customized solutions
+          Whether you need data strategy consulting, cloud solutions, or
+          cutting-edge AI, our <strong>#DataReimagined</strong> approach ensures
+          we deliver innovative, scalable, and customized solutions
         </p>
       </div>
       <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
@@ -54,14 +54,14 @@ const items = [
         >
           {
             items.map((item) => (
-              <div class="flex flex-col">
+              <a href={item.href} class="flex flex-col">
                 <dt class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
                   {item.title}
                 </dt>
                 <dd class="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
                   <p class="flex-auto">{item.description}</p>
                 </dd>
-              </div>
+              </a>
             ))
           }
         </dl>
