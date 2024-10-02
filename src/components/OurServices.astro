@@ -1,64 +1,65 @@
 ---
+import DataReimagined from "./DataReimagined.astro";
 const items = [
   {
     title: "Data Strategy Consulting",
     description: `Align your business objectives with a custom data roadmap. (#DataReimagined is your guide to strategic data transformation.)`,
-    href: "/services/data-strategy-consulting",
+    href: "/services/data-strategy-consulting/",
   },
   {
     title: "Data Engineering",
     description: `Build efficient pipelines and infrastructure.`,
-    href: "/services/data-engineering",
+    href: "/services/data-engineering/",
   },
   {
     title: "Advanced Analytics & AI",
     description: `Unlock insights with machine learning and AI.`,
-    href: "/services/advanced-analytics-ai",
+    href: "/services/advanced-analytics-ai/",
   },
   {
     title: "Data Governance",
     description: `Establishing policies and procedures to manage data assets responsibly and comply with regulations.`,
-    href: "/services/data-governance",
+    href: "/services/data-governance/",
   },
   {
     title: "Data Quality",
     description: `Identifying and correcting errors or inconsistencies within your data sets.`,
-    href: "/services/data-quality",
+    href: "/services/data-quality/",
   },
   {
     title: "Data Modeling",
     description: `Structuring data into logical models for optimal storage, retrieval, and analysis.`,
-    href: "/services/data-modeling",
+    href: "/services/data-modeling/",
   },
   {
     title: "Data Architecture",
     description: `Crafting a blueprint for data flow and storage within your organization to ensure scalability and efficiency.`,
-    href: "/services/data-architecture",
+    href: "/services/data-architecture/",
   },
   {
     title: "Cloud Solutions",
     description: `Seamlessly scale your operations in the cloud.`,
-    href: "/services/cloud-solutions",
+    href: "/services/cloud-solutions/",
   },
   {
     title: "Data Integration",
     description: `Combining data from disparate sources into a unified and coherent view.`,
-    href: "/services/data-integration",
+    href: "/services/data-integration/",
   },
   {
     title: "Real-Time Data Processing",
     description: `Processing streaming data instantaneously for immediate analysis and action.`,
-    href: "/services/real-time-data",
+    href: "/services/real-time-data/",
   },
   {
     title: "Fullstack & Bespoke Development",
     description: `Build seamless, end-to-end applications that integrate front-end interfaces with powerful back-end systems.`,
-    href: "/services/fullstack-development",
+    href: "/services/fullstack-development/",
   },
   {
     title: "Snowflake Expertise",
     description: `As a Snowflake partner, we're ready to take your cloud data warehousing to the next level.`,
-    href: "/services/snowflake-expertise",
+    href: "/services/snowflake-expertise/",
   },
 ];
 ---
@@ -74,8 +75,7 @@ const items = [
         </p>
         <p class="mt-6 text-lg leading-8 text-gray-600">
           Whether you need data strategy consulting, cloud solutions, or
-          cutting-edge AI, our <strong>#DataReimagined</strong> approach ensures
-          we deliver innovative, scalable, and customized solutions
+          cutting-edge AI, our <DataReimagined/> approach ensures we deliver innovative, scalable, and customized solutions
         </p>
       </div>
       <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
@@ -84,14 +84,14 @@ const items = [
         >
           {
             items.map((item) => (
-              <a href={item.href} class="flex flex-col">
-                <dt class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
+              <div class="flex flex-col">
+                <dt class="font-mont flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
                   {item.title}
                 </dt>
                 <dd class="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
                   <p class="flex-auto">{item.description}</p>
                 </dd>
-              </a>
+              </div>
             ))
           }
         </dl>

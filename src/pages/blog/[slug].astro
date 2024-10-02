@@ -56,9 +56,9 @@ const author = await getEntryBySlug("authors", data.author);
             <div class="flex items-center justify-center gap-4 mt-4">
               <span>By</span>
               <Image
-                class="h-12 w-12 rounded-full"
+                class="h-16 w-16 rounded-full"
                 src={author.data.image}
-                alt=""
+                alt={author.data.name}
                 aria-hidden="true"
               />
               {author.data.name}

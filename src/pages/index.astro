@@ -8,9 +8,10 @@ import GetInTouchCTA from "~/components/GetInTouchCTA.astro";
 import OurServices from "~/components/OurServices.astro";
 import snowArchBadge from "~/assets/snowflake-snowpro-advanced-architect-badge.png";
 import snowCoreBadge from "~/assets/snowflake-snowpro-core-badge.png";
+import DataReimagined from "~/components/DataReimagined.astro";
 
-const snowArchDesc  = "Snowflake SnowPro Advanced Architect badge";
-const snowCoreDesc  = "Snowflake SnowPro Core badge";
+const snowArchDesc = "Snowflake SnowPro Advanced Architect badge";
+const snowCoreDesc = "Snowflake SnowPro Core badge";
 
 const title = "Data Reimagined";
 const description = `At Redefine, we empower businesses to harness the full power
@@ -23,85 +24,39 @@ of their data through advanced data engineering and analytics solutions.`;
   <ContentSection>
     <Fragment slot="title">Why Choose Redefine?</Fragment>
     <Fragment slot="desc">
-
-      At Redefine, our experienced team is dedicated to unlocking
-      the full potential of your data by offering personalized solutions and
-      leveraging cutting-edge technology. We have a deep understanding of
-      business challenges, which allows us to tailor our services to meet
-      your specific needs. Unlike others, our engineers have expertise in
-      building end-to-end applications—not just typical SQL data
-      pipelines—so we can deliver what other teams can't. We live by our
-      motto, <strong>#DataReimagined</strong>, taking a completely new approach to data that
-      drives innovation and growth. Partner with us to experience a level of
-      service and expertise that redefines what's possible with your data.
-
+      At Redefine, our experienced team is dedicated to unlocking the full
+      potential of your data by offering personalized solutions and leveraging
+      cutting-edge technology. We have a deep understanding of business
+      challenges, which allows us to tailor our services to meet your specific
+      needs. Unlike others, our engineers have expertise in building end-to-end
+      applications—not just typical SQL data pipelines—so we can deliver what
+      other teams can't. We live by our motto, <DataReimagined />, taking a
+      completely new approach to data that drives innovation and growth. Partner
+      with us to experience a level of service and expertise that redefines
+      what's possible with your data.
     </Fragment>
 
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight sm:text-4xl">
+      <h3 class="text-2xl font-bold tracking-tight sm:text-4xl mb-2 font-mont">
         Key Differentiators
       </h3>
-      <p>
+      <p class="mb-2">
         <strong>Certified Experts:</strong> Our team is Snowflake-certified and highly
         skilled in the latest data technologies.
       </p>
-      <p>
+      <p class="mb-2">
         <strong>End-to-End Solutions:</strong> From strategy to execution, we manage
         your entire data lifecycle.
       </p>
-      <p>
+      <p class="mb-2">
         <strong>Proven Results:</strong> We consistently drive measurable success
         for our clients.
       </p>
-    </Fragment>
-
-    <Fragment slot="content">
-      <Image src={snowCoreBadge} width={200} alt={snowCoreDesc} />
-      <Image src={snowArchBadge} width={200} alt={snowArchDesc} />
-    </Fragment>
-  </ContentSection>
-
-  <!-- <ContentSection class="bg-redefine-primary">
-    <Fragment slot="title">
-      Are your business decisions driven by data?
-    </Fragment>
-    <Fragment slot="desc">
-      Welcome to Redefine, where we reimagine data-driven solutions for
-      businesses of all sizes. Our technology consultancy specializes in Data
-      Lakes, Data Lakehouses, Data Analytics, Machine Learning, and Cloud
-      Computing. With our bespoke approach, we tailor our services to address
-      your unique business challenges and turn them into growth opportunities.
+      <div class="flex flex-col justify-center items-center md:flex-row md:space-x-8">
+        <Image src={snowCoreBadge} width={200} alt={snowCoreDesc} />
+        <Image src={snowArchBadge} width={200} alt={snowArchDesc} />
+      </div>
     </Fragment>
   </ContentSection>
-  <ContentSection>
-    <Fragment slot="title">What we do:</Fragment>
-    <Fragment slot="desc">
-      At Redefine, we help businesses solve their most complex problems with
-      cutting-edge technology. Our team specializes in building high-quality and
-      scalable solutions that are tailored to your specific needs. We understand
-      that every business is unique, which is why we take a bespoke approach to
-      every project. Whether you need a Data Lake, Data Lakehouse, real-time
-      analytics, or AI and machine learning-based products, we have the
-      expertise to deliver. Our teams have over ten years of experience in
-      building Petabyte-scale Data Lakes from the ground up at world-class
-      organisations. We can offer technical expertise and build the Data Lake
-      your company deserves.
-    </Fragment>
-  </ContentSection>
-  <ContentSection>
-    <Fragment slot="title">Who we are: Passionate Data Pioneers</Fragment>
-    <Fragment slot="desc">
-      Our team of skilled professionals is passionate about technology and
-      innovation. With a diverse background in Data Engineering, Data Analytics,
-      Web Technologies, Machine Learning, IoT and Cloud Computing. We follow the
-      latest development principles for functional programming and use CI/CD to
-      ensure high-quality solutions. We work with a small, agile team that
-      follows all the modern and latest development best practices. We pride
-      ourselves on delivering solutions that are not only high-quality but also
-      scalable and resilient, enabling businesses to leverage data to make
-      better decisions.
-    </Fragment>
-  </ContentSection>
-  <HowWeWork />
-  <GetInTouchCTA /> -->
+  <GetInTouchCTA />
 </Layout>
