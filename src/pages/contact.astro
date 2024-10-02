@@ -1,27 +1,183 @@
 ---
+import { Image } from "astro:assets";
+import brunoImage from "~/assets/bruno-bonacci.png";
+import brandonImage from "~/assets/brandon-stubbs.jpg";
+import snowArchBadge from "~/assets/snowflake-snowpro-advanced-architect-badge.png";
+import snowCoreBadge from "~/assets/snowflake-snowpro-core-badge.png";
+
 import { Icon } from "astro-icon";
+import SnowflakeBug from "~/components/SnowflakeBug.astro";
 import Layout from "~/layouts/Layout.astro";
 import Container from "~/components/Container.astro";
+import ContentSection from "~/components/ContentSection.astro";
 
-const title="Contact Us"
-const description="Are you ready to leverage the power of data to drive your business forward?"
+const snowArchDesc = "Snowflake SnowPro Advanced Architect badge";
+const snowCoreDesc = "Snowflake SnowPro Core badge";
+
+const title = "Contact Us";
+const description =
+  "Are you ready to leverage the power of data to drive your business forward?";
 ---
 
-
 <Layout title={title} description={description}>
+  <ContentSection>
+    <Fragment slot="title">Meet our leadership</Fragment>
+    <Fragment slot="desc">
+      We're a dynamic group of individuals who are passionate about what we do
+      and dedicated to delivering the best results for our clients.
+    </Fragment>
+    <Fragment slot="content">
+      <ul
+        role="list"
+        class="mx-auto grid max-w-2xl grid-cols-1 gap-x-6 gap-y-20 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:gap-x-8 xl:col-span-2"
+      >
+        <li>
+          <Image
+            src={brunoImage}
+            alt="Redefine Technologies logo"
+            class="w-full rounded-2xl object-cover"
+          />
+          <div class="mt-6 flex justify-between items-center">
+            <div>
+              <h3 class="text-lg font-semibold leading-8 text-gray-900">
+                Bruno Bonacci
+              </h3>
+              <p class="text-base leading-7 text-gray-600">Founder</p>
+            </div>
+            <div>
+              <div class="flex justify-center items-center space-x-2">
+                <a
+                  href="https://www.credential.net/57a2be28-992c-4b71-bbf8-e81168e21835"
+                  rel="noopener noreferer"
+                  target="_blank"
+                >
+                  <Image src={snowCoreBadge} width={80} alt={snowCoreDesc} />
+                </a>
+                <a
+                  href="https://www.credential.net/46f91a3d-e82a-44e4-b6ed-29db84125bb7"
+                  rel="noopener noreferer"
+                  target="_blank"
+                >
+                  <Image src={snowArchBadge} width={80} alt={snowArchDesc} />
+                </a>
+              </div>
+            </div>
+          </div>
+          <p class="mt-4 text-base leading-7 text-gray-600">
+            Experienced Architect and Engineer, High-Volume Data Systems. Ex
+            Apple, Cisco, Trainline, Channel 4, Tesco, Betfair.
+          </p>
+          <ul role="list" class="mt-6 flex gap-x-6">
+            <li>
+              <a
+                href="https://linkedin.com/in/brunobonacci/"
+                rel="noopener noreferer"
+                target="_blank"
+                class="transition-colors hover:text-redefine-primary"
+              >
+                <span class="sr-only">LinkedIn</span>
+                <Icon name="mdi:linkedin" class="h-6 w-6" aria-hidden="true" />
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://directory.snowflake.com/profile/98d84b90-459d-42b1-a4db-9485cb6f6658"
+                rel="noopener noreferer"
+                target="_blank"
+                class="transition-colors hover:text-redefine-primary"
+              >
+                <span class="sr-only">Snowflake</span>
+                <SnowflakeBug />
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <Image
+            src={brandonImage}
+            alt="Redefine Technologies logo"
+            class="w-full rounded-2xl object-cover"
+          />
+          <div class="mt-6 flex justify-between items-center">
+            <div>
+              <h3 class="text-lg font-semibold leading-8 text-gray-900">
+                Brandon Stubbs
+              </h3>
+              <p class="text-base leading-7 text-gray-600">Founder</p>
+            </div>
+            <div>
+              <div class="flex justify-center items-center space-x-2">
+                <a
+                  href="https://achieve.snowflake.com/c8467db4-6552-43a7-9eb9-99fbad3fee14"
+                  rel="noopener noreferer"
+                  target="_blank"
+                >
+                  <Image src={snowCoreBadge} width={80} alt={snowCoreDesc} />
+                </a>
+                <a
+                  href="https://achieve.snowflake.com/8b40e164-8106-48ea-9012-2d3272af43c8"
+                  rel="noopener noreferer"
+                  target="_blank"
+                >
+                  <Image src={snowArchBadge} width={80} alt={snowArchDesc} />
+                </a>
+              </div>
+            </div>
+          </div>
+          <p class="mt-4 text-base leading-7 text-gray-600">
+            As the co-founder of Redefine Technologies, I am dedicated to
+            helping businesses unlock the full potential of their data. Our team
+            specializes in transforming data into powerful insights that drive
+            decision-making and growth. Whether you’re looking to optimize,
+            scale, or innovate, we provide expert guidance and solutions
+            tailored to your unique needs. Let's redefine what's possible with
+            your data.
+          </p>
+          <ul role="list" class="mt-6 flex gap-x-6">
+            <li>
+              <a
+                href="https://linkedin.com/in/brandonstubbstech/"
+                rel="noopener noreferer"
+                target="_blank"
+                class="transition-colors hover:text-redefine-primary"
+              >
+                <span class="sr-only">LinkedIn</span>
+                <Icon name="mdi:linkedin" class="h-6 w-6" aria-hidden="true" />
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://directory.snowflake.com/profile/6804113d-713f-4878-adc1-028af28e54a1"
+                rel="noopener noreferer"
+                target="_blank"
+                class="transition-colors hover:text-redefine-primary"
+              >
+                <span class="sr-only">Snowflake</span>
+                <SnowflakeBug />
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </Fragment>
+  </ContentSection>
   <Container>
     <div class="max-w-2xl mx-auto mt-16 text-center">
       <h1 class="text-4xl lg:text-5xl font-mono font-bold tracking-tight">
         {title}
       </h1>
       <p class="text-lg mt-4">
-        Are you ready to leverage the power of data to drive your business forward?
-        Contact us today to discuss how our team of experts can transform your
-        business challenges into innovative solutions.
+        Are you ready to leverage the power of data to drive your business
+        forward? Contact us today to discuss how our team of experts can
+        transform your business challenges into innovative solutions.
       </p>
       <div class="my-16">
-        <a href="mailto:info@redefine.io" rel="noopener noreferer" target="_blank"
-          class="flex justify-center transition-colors text-redefine-secondary hover:text-redefine-primary text-2xl md:text-4xl">
+        <a
+          href="mailto:info@redefine.io"
+          rel="noopener noreferer"
+          target="_blank"
+          class="flex justify-center transition-colors text-redefine-secondary hover:text-redefine-primary text-2xl md:text-4xl"
+        >
           <span class="sr-only">Email info@redefine.io</span>
           <div class="flex flex-row items-center space-x-2">
             <Icon name="mdi:email" class="h-6 w-6 inline" aria-hidden="true" />
@@ -29,7 +185,6 @@ const description="Are you ready to leverage the power of data to drive your bus
           </div>
         </a>
       </div>
-
     </div>
   </Container>
 </Layout>

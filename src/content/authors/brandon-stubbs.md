@@ -1,5 +1,5 @@
 ---
 name: Brandon Stubbs
 title: Founder
-image: ./_images/brandon-stubbs.jpeg
+image: ./_images/brandon-stubbs.jpg
 ---
