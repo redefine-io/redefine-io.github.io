@@ -1,5 +1,5 @@
 ---
 name: Bruno Bonacci
 title: Founder
-image: ./_images/bruno-bonacci.jpeg
+image: ./_images/bruno-bonacci.png
 ---
