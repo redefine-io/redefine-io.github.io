@@ -82,8 +82,8 @@ const ensureTrailingSlash = (url: string | URL) => url.toString().replace(/\/$/,
 {twitter.image && <meta name="twitter:image:alt" content={twitter.image.alt} />}
 
 <!-- Tracking -->
-<script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-PCKNH5GDVV" />
-<script type="text/partytown">
+<script is:inline src="https://www.googletagmanager.com/gtag/js?id=G-PCKNH5GDVV" />
+<script is:inline>
 	window.dataLayer = window.dataLayer || [];
 	function gtag() {
 		dataLayer.push(arguments);
