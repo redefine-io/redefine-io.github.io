@@ -1,13 +1,14 @@
 ---
 title: "Transforming a Housing Association"
-description: "We discuss how Redefine helped a large UK housing association undergo a successful digital transformation and implement a Data Lake to drive data-driven decision-making."
+description: "We discuss how Redefine helped Hyde Housing, a large UK housing association, undergo a successful digital transformation and implement a Data Lake to drive data-driven decision-making."
 publishDate: 2023-03-27
 author: redefine
 ---
 
 ## The Power of Data-Driven Decision-Making with Redefine's Data Lake
 
-Our client, a large housing association in the UK, started their digital
+Our client, [Hyde Housing](https://www.hyde-housing.co.uk/),
+a large housing association in the UK, started their digital
 transformation journey over 2 years ago. Their strategic objectives for the
 transformation are to harmonise a large number of systems that are not integrated
 to provide better access to real-time data and drive more data-led decision-making
@@ -22,7 +23,7 @@ reported at different times, resulting in a loss of confidence. They knew they
 lacked the skills on the ground to progress this work and this is where we were
 able to help.
 
-To begin, we delved into our client's goals and aspirations and conducted a
+To begin, we delved into Hyde's goals and aspirations and conducted a
 comprehensive evaluation of their existing systems to identify strengths and
 weaknesses. From there, we devised a strategy to construct a Data Integration
 Platform and Data Lake to facilitate data-driven insights.
@@ -30,10 +31,10 @@ Platform and Data Lake to facilitate data-driven insights.
 A data-driven organisation must build on strong foundations. We prioritized
 establishing a solid foundation of data reliability, focusing on the three key
 pillars: data accuracy, completeness, and consistency. Our solution was designed
-to ensure that every data point's lineage could be traced, allowing our client
+to ensure that every data point's lineage could be traced, allowing Hyde Housing
 to have complete confidence in their new Data Integration Platform and Data Lake.
 
-We collaborated with the client to achieve their first major integration goals.
+We collaborated with Hyde to achieve their first major integration goals.
 Together, we successfully integrated three crucial SaaS solutions - Salesforce
 with My Customer 360, TMC for operations, and Workday. This achievement served
 as a springboard for further data accomplishments.
@@ -60,7 +61,7 @@ result was significant efficiency gains, eliminating errors and freeing up staff
 members to focus on more high-value tasks.
 
 Our team utilized the Data Lake to deliver critical business dashboards,
-providing the client with invaluable insights from their data that they never
+providing the Hyde Housing with invaluable insights from their data that they never
 thought possible. The dashboards covered various aspects of the business,
 including Case Management, Arrears, and Service Charges. This marks only the
 beginning of their data journey, as the use of the Data Lake has generated
@@ -80,7 +81,7 @@ you avoid costly mistakes as you embark on this strategic priority. We don't
 just provide insights, but we also equip you with the tools to continue
 generating insights on your own.
 
-Our client is a prime example of how we help businesses achieve their goals.
+Hyde Housing is a prime example of how we help businesses achieve their goals.
 Through our partnership, they were able to undergo a successful digital
 transformation and implement a data lake, giving them a more comprehensive
 understanding of their business. With this new data-driven approach, they were
