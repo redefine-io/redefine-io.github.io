@@ -17,7 +17,7 @@ export default defineConfig({
     mdx({
       rehypePlugins: [rehypeAccessibleEmojis],
       shikiConfig: {
-        theme: "material-palenight",
+        theme: "material-theme-palenight",
       },
     }),
     partytown({
