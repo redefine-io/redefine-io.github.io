@@ -1,4 +1,10 @@
-# Redefine Technologies
+# redefine.io website
+
+- legacy website `main` brach
+- LIVE branch `web`, source https://github.com/redefine-io/website
+
+
+# LEGACY website
 
 ```bash
 docker build . -t website
